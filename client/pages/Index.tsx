@@ -130,23 +130,21 @@ export default function Index() {
     <div className="bg-background text-foreground">
       {/* Blur Overlay - Top */}
       <div
-        className={`fixed top-0 left-0 right-0 h-32 pointer-events-none transition-opacity duration-300 z-40 ${
-          !isWindowFocused ? "opacity-100" : "opacity-0"
+        className={`fixed top-0 left-0 right-0 h-32 pointer-events-none transition-all duration-500 z-40 backdrop-blur-md ${
+          !isWindowFocused ? "opacity-60" : "opacity-0"
         }`}
         style={{
-          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent)",
-          backdropFilter: !isWindowFocused ? "blur(8px)" : "blur(0px)",
+          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent)",
         }}
       />
 
       {/* Blur Overlay - Bottom */}
       <div
-        className={`fixed bottom-0 left-0 right-0 h-32 pointer-events-none transition-opacity duration-300 z-40 ${
-          !isWindowFocused ? "opacity-100" : "opacity-0"
+        className={`fixed bottom-0 left-0 right-0 h-32 pointer-events-none transition-all duration-500 z-40 backdrop-blur-md ${
+          !isWindowFocused ? "opacity-60" : "opacity-0"
         }`}
         style={{
-          background: "linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent)",
-          backdropFilter: !isWindowFocused ? "blur(8px)" : "blur(0px)",
+          background: "linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent)",
         }}
       />
 
