@@ -22,22 +22,22 @@
     --popover-foreground: 210 15% 12%;
 
     --primary: 210 15% 12%;
-    --primary-foreground: 200 20% 98%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 170 60% 45%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 15% 95%;
-    --muted-foreground: 210 15% 50%;
+    --muted: 210 10% 90%;
+    --muted-foreground: 210 8% 40%;
 
     --accent: 170 60% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 85%;
-    --input: 210 15% 90%;
+    --border: 210 15% 88%;
+    --input: 210 15% 93%;
     --ring: 170 60% 45%;
 
     --radius: 0.5rem;
