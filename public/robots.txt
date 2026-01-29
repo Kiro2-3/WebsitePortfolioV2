@@ -1,0 +1,28 @@
+# Robots.txt for Rocky L. Penamante Portfolio
+# Allow all search engines to crawl and index
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /vite.config.ts
+Disallow: /tailwind.config.ts
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://rockypenamante.dev/sitemap.xml
+
+# Request rate limiting
+Request-rate: 1 request per 1 second

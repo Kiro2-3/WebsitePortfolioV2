@@ -1,0 +1,165 @@
+/** @import must precede all other statements */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 15% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 15% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 15% 12%;
+
+    --primary: 210 15% 12%;
+    --primary-foreground: 200 20% 98%;
+
+    --secondary: 170 60% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 15% 35%;
+    --muted-foreground: 210 15% 35%;
+
+    --accent: 170 60% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 15% 85%;
+    --input: 210 15% 90%;
+    --ring: 170 60% 45%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 210 15% 12%;
+    --foreground: 200 20% 92%;
+
+    --card: 210 20% 16%;
+    --card-foreground: 200 20% 92%;
+
+    --popover: 210 20% 16%;
+    --popover-foreground: 200 20% 92%;
+
+    --primary: 200 20% 92%;
+    --primary-foreground: 210 15% 12%;
+
+    --secondary: 170 65% 50%;
+    --secondary-foreground: 210 15% 12%;
+
+    --muted: 210 15% 40%;
+    --muted-foreground: 210 15% 75%;
+
+    --accent: 170 65% 50%;
+    --accent-foreground: 210 15% 12%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 15% 25%;
+    --input: 210 15% 20%;
+    --ring: 170 65% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  a {
+    @apply transition-colors;
+  }
+
+  pre,
+  code {
+    overflow-x: auto;
+    white-space: pre;
+    font-family: "Fira Code", monospace;
+  }
+}
+
+@layer components {
+  .link-underline {
+    @apply relative inline-block text-accent hover:text-accent/80 transition-colors;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-0 h-0.5 bg-accent transition-all duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  .media-zoom {
+    @apply transition-transform duration-300 ease-out cursor-pointer;
+  }
+
+  .media-zoom:hover {
+    @apply scale-105;
+  }
+
+  .blur-overlay {
+    @apply fixed pointer-events-none transition-opacity duration-300;
+  }
+
+  .blur-overlay-top {
+    @apply top-0 left-0 right-0 h-32 z-40;
+  }
+
+  .blur-overlay-bottom {
+    @apply bottom-0 left-0 right-0 h-32 z-40;
+  }
+}
