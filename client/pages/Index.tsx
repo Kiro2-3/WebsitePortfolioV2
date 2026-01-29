@@ -374,7 +374,7 @@ export default function Index() {
         id="work"
         className="relative w-full py-20 border-t border-border"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 1)",
+          backgroundColor: isDark ? "hsl(210, 15%, 12%)" : "hsl(200, 20%, 98%)",
           transform: `scale(${sectionScales.work})`,
           transformOrigin: "center top",
           transition: "transform 0.1s ease-out",
