@@ -564,7 +564,9 @@ export default function Index() {
               <Github className="w-6 h-6" />
             </a>
             <a
-              href="mailto:rockypenamantejr23@gmail.com"
+              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-accent transition-colors"
               aria-label="Email"
             >
