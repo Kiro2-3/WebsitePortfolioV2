@@ -251,7 +251,16 @@ export default function Index() {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="relative w-full pt-32 pb-20">
+      <section
+        ref={heroRef}
+        id="hero"
+        className="relative w-full pt-32 pb-20"
+        style={{
+          transform: `scale(${sectionScales.hero})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 mt-20">
             <div className="space-y-2">
@@ -293,8 +302,14 @@ export default function Index() {
 
       {/* About Section */}
       <section
+        ref={aboutRef}
         id="about"
         className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.about})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-12 text-primary">
@@ -350,8 +365,14 @@ export default function Index() {
 
       {/* Work Section */}
       <section
+        ref={workRef}
         id="work"
         className="relative w-full py-20 bg-muted/20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.work})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-16 text-primary">
@@ -491,8 +512,14 @@ export default function Index() {
 
       {/* Contact Section */}
       <section
+        ref={contactRef}
         id="contact"
         className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.contact})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-8 text-primary">
@@ -539,7 +566,15 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="relative w-full border-t border-border py-12 bg-muted/20">
+      <footer
+        ref={footerRef}
+        className="relative w-full border-t border-border py-12 bg-muted/20"
+        style={{
+          transform: `scale(${sectionScales.footer})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-muted-foreground text-sm">
             Designed & Built by Penamante Rocky | Built with React, Vite &
