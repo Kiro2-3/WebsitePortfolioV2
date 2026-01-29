@@ -540,6 +540,18 @@ export default function Index() {
             feel free to reach out!
           </p>
 
+          <div className="max-w-2xl mx-auto mb-12 space-y-4">
+            <div className="text-base text-muted-foreground">
+              <p className="font-medium text-foreground mb-2">Contact Information:</p>
+              <p>
+                <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
+              </p>
+              <p>
+                <span className="text-accent">Contact Number:</span> +63 938 992 6231
+              </p>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
