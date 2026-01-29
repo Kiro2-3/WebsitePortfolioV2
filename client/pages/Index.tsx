@@ -53,15 +53,20 @@ export default function Index() {
 
       sections.forEach(({ ref, key }) => {
         if (ref.current) {
-          const rect = ref.current.getBoundingClientRect();
-          const sectionCenter = rect.top + rect.height / 2;
-          const distanceFromViewportCenter = Math.abs(sectionCenter - viewportCenter);
+          // Work section always stays at full scale
+          if (key === "work") {
+            newScales[key] = 1;
+          } else {
+            const rect = ref.current.getBoundingClientRect();
+            const sectionCenter = rect.top + rect.height / 2;
+            const distanceFromViewportCenter = Math.abs(sectionCenter - viewportCenter);
 
-          // Scale: closer to center = bigger, further away = smaller
-          // Max distance is viewport height, scale ranges from 1 to 0.85
-          const maxDistance = window.innerHeight;
-          const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
-          newScales[key] = scale;
+            // Scale: closer to center = bigger, further away = smaller
+            // Max distance is viewport height, scale ranges from 1 to 0.85
+            const maxDistance = window.innerHeight;
+            const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
+            newScales[key] = scale;
+          }
         }
       });
 
