@@ -4,6 +4,7 @@ import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isWindowFocused, setIsWindowFocused] = useState(true);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const [isDark, setIsDark] = useState(() => {
     // Check localStorage first, then check system preference
     const saved = localStorage.getItem("theme");
@@ -25,6 +26,9 @@ export default function Index() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      // Calculate zoom based on scroll position (max 1.08 zoom at 500px scroll)
+      const scrollAmount = Math.min(window.scrollY / 500, 1);
+      setZoomLevel(1 + scrollAmount * 0.08);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
