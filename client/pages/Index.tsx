@@ -294,7 +294,9 @@ export default function Index() {
                 <ExternalLink className="w-4 h-4" />
               </button>
               <a
-                href="mailto:hello@example.com"
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
               >
                 <Mail className="w-4 h-4" />
