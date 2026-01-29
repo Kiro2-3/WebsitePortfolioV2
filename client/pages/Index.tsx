@@ -1,16 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isWindowFocused, setIsWindowFocused] = useState(true);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [sectionScales, setSectionScales] = useState({
+    hero: 1,
+    about: 1,
+    work: 1,
+    contact: 1,
+    footer: 1,
+  });
   const [isDark, setIsDark] = useState(() => {
     // Check localStorage first, then check system preference
     const saved = localStorage.getItem("theme");
     if (saved) return saved === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const workRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const htmlElement = document.documentElement;
@@ -26,11 +38,38 @@ export default function Index() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      // Calculate zoom based on scroll position (max 1.08 zoom at 500px scroll)
-      const scrollAmount = Math.min(window.scrollY / 500, 1);
-      setZoomLevel(1 + scrollAmount * 0.08);
+
+      // Calculate scale for each section based on viewport distance
+      const viewportCenter = window.innerHeight / 2;
+      const sections = [
+        { ref: heroRef, key: "hero" },
+        { ref: aboutRef, key: "about" },
+        { ref: workRef, key: "work" },
+        { ref: contactRef, key: "contact" },
+        { ref: footerRef, key: "footer" },
+      ];
+
+      const newScales: Record<string, number> = {};
+
+      sections.forEach(({ ref, key }) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const distanceFromViewportCenter = Math.abs(sectionCenter - viewportCenter);
+
+          // Scale: closer to center = bigger, further away = smaller
+          // Max distance is viewport height, scale ranges from 1 to 0.85
+          const maxDistance = window.innerHeight;
+          const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
+          newScales[key] = scale;
+        }
+      });
+
+      setSectionScales(newScales);
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
