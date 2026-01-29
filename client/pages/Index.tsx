@@ -1,15 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isWindowFocused, setIsWindowFocused] = useState(true);
+  const [sectionScales, setSectionScales] = useState({
+    hero: 1,
+    about: 1,
+    work: 1,
+    contact: 1,
+    footer: 1,
+  });
   const [isDark, setIsDark] = useState(() => {
     // Check localStorage first, then check system preference
     const saved = localStorage.getItem("theme");
     if (saved) return saved === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
+
+  const heroRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const workRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const htmlElement = document.documentElement;
@@ -25,8 +38,43 @@ export default function Index() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Calculate scale for each section based on viewport distance
+      const viewportCenter = window.innerHeight / 2;
+      const sections = [
+        { ref: heroRef, key: "hero" },
+        { ref: aboutRef, key: "about" },
+        { ref: workRef, key: "work" },
+        { ref: contactRef, key: "contact" },
+        { ref: footerRef, key: "footer" },
+      ];
+
+      const newScales: Record<string, number> = {};
+
+      sections.forEach(({ ref, key }) => {
+        if (ref.current) {
+          // Work section always stays at full scale
+          if (key === "work") {
+            newScales[key] = 1;
+          } else {
+            const rect = ref.current.getBoundingClientRect();
+            const sectionCenter = rect.top + rect.height / 2;
+            const distanceFromViewportCenter = Math.abs(sectionCenter - viewportCenter);
+
+            // Scale: closer to center = bigger, further away = smaller
+            // Max distance is viewport height, scale ranges from 1 to 0.85
+            const maxDistance = window.innerHeight;
+            const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
+            newScales[key] = scale;
+          }
+        }
+      });
+
+      setSectionScales(newScales);
     };
+
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Call once on mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -130,23 +178,21 @@ export default function Index() {
     <div className="bg-background text-foreground">
       {/* Blur Overlay - Top */}
       <div
-        className={`fixed top-0 left-0 right-0 h-32 pointer-events-none transition-opacity duration-300 z-40 ${
-          !isWindowFocused ? "opacity-100" : "opacity-0"
+        className={`fixed top-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+          isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
-          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent)",
-          backdropFilter: !isWindowFocused ? "blur(8px)" : "blur(0px)",
+          background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.02), transparent)",
         }}
       />
 
       {/* Blur Overlay - Bottom */}
       <div
-        className={`fixed bottom-0 left-0 right-0 h-32 pointer-events-none transition-opacity duration-300 z-40 ${
-          !isWindowFocused ? "opacity-100" : "opacity-0"
+        className={`fixed bottom-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+          isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
-          background: "linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent)",
-          backdropFilter: !isWindowFocused ? "blur(8px)" : "blur(0px)",
+          background: "linear-gradient(to top, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.02), transparent)",
         }}
       />
 
@@ -210,7 +256,16 @@ export default function Index() {
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="relative w-full pt-32 pb-20">
+      <section
+        ref={heroRef}
+        id="hero"
+        className="relative w-full pt-32 pb-20"
+        style={{
+          transform: `scale(${sectionScales.hero})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
+      >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 mt-20">
             <div className="space-y-2">
@@ -239,7 +294,9 @@ export default function Index() {
                 <ExternalLink className="w-4 h-4" />
               </button>
               <a
-                href="mailto:hello@example.com"
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
               >
                 <Mail className="w-4 h-4" />
@@ -252,8 +309,14 @@ export default function Index() {
 
       {/* About Section */}
       <section
+        ref={aboutRef}
         id="about"
         className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.about})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-12 text-primary">
@@ -309,8 +372,15 @@ export default function Index() {
 
       {/* Work Section */}
       <section
+        ref={workRef}
         id="work"
-        className="relative w-full py-20 bg-muted/20 border-t border-border"
+        className="relative w-full py-20 border-t border-border"
+        style={{
+          backgroundColor: isDark ? "hsl(210, 15%, 12%)" : "hsl(200, 20%, 98%)",
+          transform: `scale(${sectionScales.work})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-16 text-primary">
@@ -450,8 +520,14 @@ export default function Index() {
 
       {/* Contact Section */}
       <section
+        ref={contactRef}
         id="contact"
         className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.contact})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold mb-8 text-primary">
@@ -464,10 +540,23 @@ export default function Index() {
             feel free to reach out!
           </p>
 
+          <div className="max-w-2xl mx-auto mb-12 space-y-4">
+            <div className="text-base text-muted-foreground">
+              <p className="font-medium text-foreground mb-2">Contact Information:</p>
+              <p>
+                <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
+              </p>
+              <p>
+                <span className="text-accent">Contact Number:</span> +63 938 992 6231
+              </p>
+            </div>
+          </div>
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="mailto:rockypenamantejr23@gmail.com"
+              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
             >
               <Mail className="w-5 h-5" />
@@ -487,7 +576,9 @@ export default function Index() {
               <Github className="w-6 h-6" />
             </a>
             <a
-              href="mailto:rockypenamantejr23@gmail.com"
+              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground hover:text-accent transition-colors"
               aria-label="Email"
             >
@@ -498,7 +589,15 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="relative w-full border-t border-border py-12 bg-muted/20">
+      <footer
+        ref={footerRef}
+        className="relative w-full border-t border-border py-12 bg-muted/20"
+        style={{
+          transform: `scale(${sectionScales.footer})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-muted-foreground text-sm">
             Designed & Built by Penamante Rocky | Built with React, Vite &
