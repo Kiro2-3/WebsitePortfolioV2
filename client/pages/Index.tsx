@@ -191,14 +191,6 @@ export default function Index() {
         }}
       />
 
-      {/* Main Content with Zoom Effect */}
-      <div
-        style={{
-          transform: `scale(${zoomLevel})`,
-          transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
-        }}
-      >
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -555,7 +547,6 @@ export default function Index() {
           </p>
         </div>
       </footer>
-      </div>
     </div>
   );
 }
