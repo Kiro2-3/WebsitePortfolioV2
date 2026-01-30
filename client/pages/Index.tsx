@@ -291,22 +291,29 @@ export default function Index() {
               technologies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-8">
-              <button
+              <Button
                 onClick={() => scrollToSection("work")}
-                className="px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
+                variant="outline"
+                size="lg"
+                className="w-fit"
               >
                 See my work
                 <ExternalLink className="w-4 h-4" />
-              </button>
-              <a
-                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                className="w-fit"
               >
-                <Mail className="w-4 h-4" />
-                Get in touch
-              </a>
+                <a
+                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Mail className="w-4 h-4" />
+                  Get in touch
+                </a>
+              </Button>
             </div>
           </div>
         </div>
