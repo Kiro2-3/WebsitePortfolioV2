@@ -596,37 +596,53 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
+            <Button
+              asChild
+              size="lg"
             >
-              <Mail className="w-5 h-5" />
-              Send me an email
-            </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="w-5 h-5" />
+                Send me an email
+              </a>
+            </Button>
           </div>
 
           {/* Social Links */}
           <div className="flex justify-center gap-6 mt-12">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="GitHub"
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-accent"
             >
-              <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="Email"
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-accent"
             >
-              <Mail className="w-6 h-6" />
-            </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
