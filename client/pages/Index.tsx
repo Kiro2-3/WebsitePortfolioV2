@@ -214,27 +214,31 @@ export default function Index() {
             <p>RP</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button
+            <Button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               About
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection("work")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               Work
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               Contact
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              size="icon"
               aria-label="Toggle dark mode"
             >
               {isDark ? (
@@ -242,13 +246,15 @@ export default function Index() {
               ) : (
                 <Moon className="w-5 h-5" />
               )}
-            </button>
+            </Button>
 
           </div>
           {/* Mobile dark mode toggle */}
-          <button
+          <Button
             onClick={() => setIsDark(!isDark)}
-            className="md:hidden p-2 text-muted-foreground hover:text-accent transition-colors"
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
             aria-label="Toggle dark mode"
           >
             {isDark ? (
@@ -256,7 +262,7 @@ export default function Index() {
             ) : (
               <Moon className="w-5 h-5" />
             )}
-          </button>
+          </Button>
         </nav>
       </header>
 
