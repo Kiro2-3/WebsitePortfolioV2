@@ -376,13 +376,13 @@ export default function Index() {
             </div>
 
             <div className="md:col-span-1">
-              <div className="relative w-48 h-48 rounded-lg overflow-hidden border-2 border-accent">
+              <Card className="overflow-hidden border-accent/50">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F55ea529b172a40d0a44be3c5bab8f31e"
                   alt="Profile"
-                  className="w-full h-full object-cover media-zoom"
+                  className="w-48 h-48 object-cover media-zoom"
                 />
-              </div>
+              </Card>
             </div>
           </div>
         </div>
