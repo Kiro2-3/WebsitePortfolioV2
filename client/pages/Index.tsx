@@ -407,11 +407,11 @@ export default function Index() {
 
           <div className="space-y-20">
             {projects.map((project, index) => (
-              <div key={index} className="space-y-8">
-                {/* Media Section - Image Slideshow or Video */}
-                {(project.video || project.images) && (
-                  <div className="space-y-4">
-                    <div className="relative w-full bg-muted rounded-lg overflow-hidden border border-accent/20">
+              <Card key={index} className="overflow-hidden border-accent/30 bg-card/50">
+                <CardContent className="p-0">
+                  {/* Media Section - Image Slideshow or Video */}
+                  {(project.video || project.images) && (
+                    <div className="relative w-full bg-muted overflow-hidden">
                       {project.video ? (
                         <video
                           src={project.video}
@@ -429,7 +429,7 @@ export default function Index() {
 
                           {/* Slideshow Controls */}
                           <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2">
-                            <button
+                            <Button
                               onClick={() =>
                                 setCurrentImageIndex(
                                   currentImageIndex === 0
@@ -437,10 +437,12 @@ export default function Index() {
                                     : currentImageIndex - 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              size="sm"
+                              variant="secondary"
                             >
-                              ← Previous
-                            </button>
+                              <ChevronLeft className="w-4 h-4" />
+                              Previous
+                            </Button>
                             <div className="flex gap-2">
                               {project.images.map((_, imgIndex) => (
                                 <button
@@ -454,7 +456,7 @@ export default function Index() {
                                 />
                               ))}
                             </div>
-                            <button
+                            <Button
                               onClick={() =>
                                 setCurrentImageIndex(
                                   currentImageIndex === project.images.length - 1
@@ -462,10 +464,12 @@ export default function Index() {
                                     : currentImageIndex + 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              size="sm"
+                              variant="secondary"
                             >
-                              Next →
-                            </button>
+                              Next
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
                           </div>
 
                           {/* Image Counter */}
@@ -475,62 +479,83 @@ export default function Index() {
                         </>
                       )}
                     </div>
-                  </div>
-                )}
+                  )}
+                </CardContent>
 
                 {/* Project Details */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-primary">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
+                <CardHeader className="space-y-4">
+                  <div className="space-y-2">
+                    <CardTitle className="text-2xl">{project.title}</CardTitle>
+                    <CardDescription className="text-base text-muted-foreground">
+                      {project.description}
+                    </CardDescription>
+                  </div>
+
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span
+                      <Badge
                         key={tag}
-                        className="px-3 py-1 text-sm bg-accent/10 text-accent rounded border border-accent/30 hover:border-accent transition-colors"
+                        variant="secondary"
+                        className="bg-accent/10 text-accent hover:bg-accent/20"
                       >
                         {tag}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-6 pt-4">
+
+                  <div className="flex flex-wrap gap-4 pt-4">
                     {index === 0 && (
                       <>
-                        <a
-                          href="https://youtu.be/XdK7nYHkymE"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                        <Button
+                          asChild
+                          variant="ghost"
+                          size="sm"
+                          className="text-accent hover:text-accent/80 group"
                         >
-                          System Demo
-                          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a
-                          href="https://alphafitnesscenter.vercel.app/services"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                          <a
+                            href="https://youtu.be/XdK7nYHkymE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            System Demo
+                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </Button>
+                        <Button
+                          asChild
+                          variant="ghost"
+                          size="sm"
+                          className="text-accent hover:text-accent/80 group"
                         >
-                          Website Link
-                          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                          <a
+                            href="https://alphafitnesscenter.vercel.app/services"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Website Link
+                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </Button>
                       </>
                     )}
-                    <a
-                      href={project.github || "https://github.com/Kiro2-3?tab=overview&from=2026-01-01&to=2026-01-29"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                    <Button
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="text-accent hover:text-accent/80 group"
                     >
-                      GitHub
-                      <Github className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                      <a
+                        href={project.github || "https://github.com/Kiro2-3?tab=overview&from=2026-01-01&to=2026-01-29"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                        <Github className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
                   </div>
-                </div>
-              </div>
+                </CardHeader>
+              </Card>
             ))}
           </div>
         </div>
