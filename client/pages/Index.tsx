@@ -1,5 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
+import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -209,27 +214,31 @@ export default function Index() {
             <p>RP</p>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <button
+            <Button
               onClick={() => scrollToSection("about")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               About
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection("work")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               Work
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => scrollToSection("contact")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              className="text-sm font-medium"
             >
               Contact
-            </button>
-            <button
+            </Button>
+            <Button
               onClick={() => setIsDark(!isDark)}
-              className="p-2 text-muted-foreground hover:text-accent transition-colors"
+              variant="ghost"
+              size="icon"
               aria-label="Toggle dark mode"
             >
               {isDark ? (
@@ -237,13 +246,15 @@ export default function Index() {
               ) : (
                 <Moon className="w-5 h-5" />
               )}
-            </button>
+            </Button>
 
           </div>
           {/* Mobile dark mode toggle */}
-          <button
+          <Button
             onClick={() => setIsDark(!isDark)}
-            className="md:hidden p-2 text-muted-foreground hover:text-accent transition-colors"
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
             aria-label="Toggle dark mode"
           >
             {isDark ? (
@@ -251,7 +262,7 @@ export default function Index() {
             ) : (
               <Moon className="w-5 h-5" />
             )}
-          </button>
+          </Button>
         </nav>
       </header>
 
@@ -286,22 +297,29 @@ export default function Index() {
               technologies.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-8">
-              <button
+              <Button
                 onClick={() => scrollToSection("work")}
-                className="px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
+                variant="outline"
+                size="lg"
+                className="w-fit"
               >
                 See my work
                 <ExternalLink className="w-4 h-4" />
-              </button>
-              <a
-                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                className="w-fit"
               >
-                <Mail className="w-4 h-4" />
-                Get in touch
-              </a>
+                <a
+                  href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Mail className="w-4 h-4" />
+                  Get in touch
+                </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -358,13 +376,13 @@ export default function Index() {
             </div>
 
             <div className="md:col-span-1">
-              <div className="relative w-48 h-48 rounded-lg overflow-hidden border-2 border-accent">
+              <Card className="overflow-hidden border-accent/50">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F55ea529b172a40d0a44be3c5bab8f31e"
                   alt="Profile"
-                  className="w-full h-full object-cover media-zoom"
+                  className="w-48 h-48 object-cover media-zoom"
                 />
-              </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -389,11 +407,11 @@ export default function Index() {
 
           <div className="space-y-20">
             {projects.map((project, index) => (
-              <div key={index} className="space-y-8">
-                {/* Media Section - Image Slideshow or Video */}
-                {(project.video || project.images) && (
-                  <div className="space-y-4">
-                    <div className="relative w-full bg-muted rounded-lg overflow-hidden border border-accent/20">
+              <Card key={index} className="overflow-hidden border-accent/30 bg-card/50">
+                <CardContent className="p-0">
+                  {/* Media Section - Image Slideshow or Video */}
+                  {(project.video || project.images) && (
+                    <div className="relative w-full bg-muted overflow-hidden">
                       {project.video ? (
                         <video
                           src={project.video}
@@ -411,7 +429,7 @@ export default function Index() {
 
                           {/* Slideshow Controls */}
                           <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-2">
-                            <button
+                            <Button
                               onClick={() =>
                                 setCurrentImageIndex(
                                   currentImageIndex === 0
@@ -419,10 +437,12 @@ export default function Index() {
                                     : currentImageIndex - 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              size="sm"
+                              variant="secondary"
                             >
-                              ← Previous
-                            </button>
+                              <ChevronLeft className="w-4 h-4" />
+                              Previous
+                            </Button>
                             <div className="flex gap-2">
                               {project.images.map((_, imgIndex) => (
                                 <button
@@ -436,7 +456,7 @@ export default function Index() {
                                 />
                               ))}
                             </div>
-                            <button
+                            <Button
                               onClick={() =>
                                 setCurrentImageIndex(
                                   currentImageIndex === project.images.length - 1
@@ -444,10 +464,12 @@ export default function Index() {
                                     : currentImageIndex + 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              size="sm"
+                              variant="secondary"
                             >
-                              Next →
-                            </button>
+                              Next
+                              <ChevronRight className="w-4 h-4" />
+                            </Button>
                           </div>
 
                           {/* Image Counter */}
@@ -457,62 +479,83 @@ export default function Index() {
                         </>
                       )}
                     </div>
-                  </div>
-                )}
+                  )}
+                </CardContent>
 
                 {/* Project Details */}
-                <div className="space-y-4">
-                  <h3 className="text-2xl font-bold text-primary">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {project.description}
-                  </p>
+                <CardHeader className="space-y-4">
+                  <div className="space-y-2">
+                    <CardTitle className="text-2xl">{project.title}</CardTitle>
+                    <CardDescription className="text-base text-muted-foreground">
+                      {project.description}
+                    </CardDescription>
+                  </div>
+
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span
+                      <Badge
                         key={tag}
-                        className="px-3 py-1 text-sm bg-accent/10 text-accent rounded border border-accent/30 hover:border-accent transition-colors"
+                        variant="secondary"
+                        className="bg-accent/10 text-accent hover:bg-accent/20"
                       >
                         {tag}
-                      </span>
+                      </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-6 pt-4">
+
+                  <div className="flex flex-wrap gap-4 pt-4">
                     {index === 0 && (
                       <>
-                        <a
-                          href="https://youtu.be/XdK7nYHkymE"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                        <Button
+                          asChild
+                          variant="ghost"
+                          size="sm"
+                          className="text-accent hover:text-accent/80 group"
                         >
-                          System Demo
-                          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a
-                          href="https://alphafitnesscenter.vercel.app/services"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                          <a
+                            href="https://youtu.be/XdK7nYHkymE"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            System Demo
+                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </Button>
+                        <Button
+                          asChild
+                          variant="ghost"
+                          size="sm"
+                          className="text-accent hover:text-accent/80 group"
                         >
-                          Website Link
-                          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </a>
+                          <a
+                            href="https://alphafitnesscenter.vercel.app/services"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Website Link
+                            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </a>
+                        </Button>
                       </>
                     )}
-                    <a
-                      href={project.github || "https://github.com/Kiro2-3?tab=overview&from=2026-01-01&to=2026-01-29"}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                    <Button
+                      asChild
+                      variant="ghost"
+                      size="sm"
+                      className="text-accent hover:text-accent/80 group"
                     >
-                      GitHub
-                      <Github className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                      <a
+                        href={project.github || "https://github.com/Kiro2-3?tab=overview&from=2026-01-01&to=2026-01-29"}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                        <Github className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    </Button>
                   </div>
-                </div>
-              </div>
+                </CardHeader>
+              </Card>
             ))}
           </div>
         </div>
@@ -553,37 +596,53 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
+            <Button
+              asChild
+              size="lg"
             >
-              <Mail className="w-5 h-5" />
-              Send me an email
-            </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Mail className="w-5 h-5" />
+                Send me an email
+              </a>
+            </Button>
           </div>
 
           {/* Social Links */}
           <div className="flex justify-center gap-6 mt-12">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="GitHub"
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-accent"
             >
-              <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="Email"
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+            </Button>
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="text-muted-foreground hover:text-accent"
             >
-              <Mail className="w-6 h-6" />
-            </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
