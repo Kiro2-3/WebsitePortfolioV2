@@ -9,20 +9,13 @@ export const useScrollReveal = (options?: {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Check if element is already in viewport
-    const checkIfInView = () => {
-      if (!ref.current) return false;
-      const rect = ref.current.getBoundingClientRect();
-      return rect.top < window.innerHeight && rect.bottom > 0;
-    };
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Use requestAnimationFrame to ensure the animation triggers
-          requestAnimationFrame(() => {
+          // Use setTimeout to ensure the DOM has time to register the transition
+          setTimeout(() => {
             setIsVisible(true);
-          });
+          }, 50);
 
           // If triggerOnce is true, stop observing after first reveal
           if (options?.triggerOnce) {
@@ -33,20 +26,13 @@ export const useScrollReveal = (options?: {
         }
       },
       {
-        threshold: options?.threshold ?? 0.1,
-        rootMargin: options?.rootMargin ?? '0px 0px -50px 0px',
+        threshold: options?.threshold ?? 0.15,
+        rootMargin: options?.rootMargin ?? '0px 0px -100px 0px',
       }
     );
 
     if (ref.current) {
       observer.observe(ref.current);
-
-      // For elements already in view on mount, trigger animation after a frame
-      if (checkIfInView()) {
-        requestAnimationFrame(() => {
-          setIsVisible(true);
-        });
-      }
     }
 
     return () => observer.disconnect();
