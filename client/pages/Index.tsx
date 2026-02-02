@@ -547,60 +547,62 @@ export default function Index() {
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-8 text-primary">
+          <h2 ref={contactTitleRef.ref} className={`text-4xl font-bold mb-8 text-primary scroll-reveal ${contactTitleRef.isVisible ? 'visible' : ''}`}>
             <span className="text-accent">03.</span> Get In Touch
           </h2>
 
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed mb-12">
-            I'm always interested in hearing about new projects and
-            opportunities. Whether you have a question or just want to say hi,
-            feel free to reach out!
-          </p>
+          <div ref={contactContentRef.ref} className={`scroll-reveal ${contactContentRef.isVisible ? 'visible' : ''}`}>
+            <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed mb-12">
+              I'm always interested in hearing about new projects and
+              opportunities. Whether you have a question or just want to say hi,
+              feel free to reach out!
+            </p>
 
-          <div className="max-w-2xl mx-auto mb-12 space-y-4">
-            <div className="text-base text-muted-foreground">
-              <p className="font-medium text-foreground mb-2">Contact Information:</p>
-              <p>
-                <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
-              </p>
-              <p>
-                <span className="text-accent">Contact Number:</span> +63 938 992 6231
-              </p>
+            <div className="max-w-2xl mx-auto mb-12 space-y-4">
+              <div className="text-base text-muted-foreground">
+                <p className="font-medium text-foreground mb-2">Contact Information:</p>
+                <p>
+                  <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
+                </p>
+                <p>
+                  <span className="text-accent">Contact Number:</span> +63 938 992 6231
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
-            >
-              <Mail className="w-5 h-5" />
-              Send me an email
-            </a>
-          </div>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
+              >
+                <Mail className="w-5 h-5" />
+                Send me an email
+              </a>
+            </div>
 
-          {/* Social Links */}
-          <div className="flex justify-center gap-6 mt-12">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-accent transition-colors"
-              aria-label="Email"
-            >
-              <Mail className="w-6 h-6" />
-            </a>
+            {/* Social Links */}
+            <div className="flex justify-center gap-6 mt-12">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-accent transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-6 h-6" />
+              </a>
+              <a
+                href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-accent transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="w-6 h-6" />
+              </a>
+            </div>
           </div>
         </div>
       </section>
