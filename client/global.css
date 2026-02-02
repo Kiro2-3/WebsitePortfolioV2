@@ -165,43 +165,49 @@
 
   /* Scroll reveal animations */
   .scroll-reveal {
-    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms ease-out, transform 800ms ease-out;
   }
 
   .scroll-reveal.visible {
-    @apply opacity-100 translate-y-0;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .scroll-reveal-stagger {
-    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms ease-out, transform 800ms ease-out;
   }
 
   .scroll-reveal-stagger.visible {
-    @apply opacity-100 translate-y-0;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Stagger delay classes */
   .scroll-reveal-stagger:nth-child(1).visible {
-    animation-delay: 0ms;
+    transition-delay: 0ms;
   }
 
   .scroll-reveal-stagger:nth-child(2).visible {
-    animation-delay: 100ms;
+    transition-delay: 100ms;
   }
 
   .scroll-reveal-stagger:nth-child(3).visible {
-    animation-delay: 200ms;
+    transition-delay: 200ms;
   }
 
   .scroll-reveal-stagger:nth-child(4).visible {
-    animation-delay: 300ms;
+    transition-delay: 300ms;
   }
 
   .scroll-reveal-stagger:nth-child(5).visible {
-    animation-delay: 400ms;
+    transition-delay: 400ms;
   }
 
   .scroll-reveal-stagger:nth-child(6).visible {
-    animation-delay: 500ms;
+    transition-delay: 500ms;
   }
 }
