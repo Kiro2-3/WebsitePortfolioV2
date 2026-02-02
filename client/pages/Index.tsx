@@ -287,10 +287,10 @@ export default function Index() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 mt-20">
             <div className="space-y-2">
-              <p ref={heroTitleRef.ref} className={`text-accent font-medium tracking-wide text-lg scroll-reveal ${heroTitleRef.isVisible ? 'visible' : ''}`}>
+              <p ref={heroGreetingRef.ref} className={`text-accent font-medium tracking-wide text-lg scroll-reveal ${heroGreetingRef.isVisible ? 'visible' : ''}`}>
                 Hi, my name is
               </p>
-              <h1 ref={heroTitleRef.ref} className={`text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight scroll-reveal ${heroTitleRef.isVisible ? 'visible' : ''}`}>
+              <h1 ref={heroNameRef.ref} className={`text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight scroll-reveal ${heroNameRef.isVisible ? 'visible' : ''}`}>
                 <p>Rocky L. Penamante</p>
               </h1>
             </div>
