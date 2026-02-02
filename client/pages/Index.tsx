@@ -98,10 +98,11 @@ export default function Index() {
   };
 
   // Scroll reveal hooks for different sections
-  const heroTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const heroSubtitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const heroDescRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const heroButtonsRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const heroGreetingRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
+  const heroNameRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
+  const heroSubtitleRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
+  const heroDescRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
+  const heroButtonsRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
 
   const aboutTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
   const aboutContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
