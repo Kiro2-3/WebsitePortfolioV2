@@ -97,6 +97,22 @@ export default function Index() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Scroll reveal hooks for different sections
+  const heroTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const heroSubtitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const heroDescRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const heroButtonsRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+
+  const aboutTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const aboutContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const aboutImageRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+
+  const workTitleRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+  const workItemsRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+
+  const contactTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const contactContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const projectImages = [
