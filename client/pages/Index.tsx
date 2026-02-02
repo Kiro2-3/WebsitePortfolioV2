@@ -400,11 +400,11 @@ export default function Index() {
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-16 text-primary">
+          <h2 ref={workTitleRef.ref} className={`text-4xl font-bold mb-16 text-primary scroll-reveal ${workTitleRef.isVisible ? 'visible' : ''}`}>
             <span className="text-accent">02.</span> Work & Experience's
           </h2>
 
-          <div className="space-y-20">
+          <div ref={workItemsRef.ref} className={`space-y-20 scroll-reveal ${workItemsRef.isVisible ? 'visible' : ''}`}>
             {projects.map((project, index) => (
               <div key={index} className="space-y-8">
                 {/* Media Section - Image Slideshow or Video */}
