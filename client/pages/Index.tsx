@@ -336,11 +336,11 @@ export default function Index() {
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-12 text-primary">
+          <h2 ref={aboutTitleRef.ref} className={`text-4xl font-bold mb-12 text-primary scroll-reveal ${aboutTitleRef.isVisible ? 'visible' : ''}`}>
             <span className="text-accent">01.</span> About
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-4">
+            <div ref={aboutContentRef.ref} className={`md:col-span-2 space-y-4 scroll-reveal ${aboutContentRef.isVisible ? 'visible' : ''}`}>
               <p className="text-muted-foreground leading-relaxed">
                 Hello! I'm a full-stack developer with a passion for creating
                 beautiful and functional web applications. My interest in web
@@ -374,7 +374,7 @@ export default function Index() {
               </div>
             </div>
 
-            <div className="md:col-span-1">
+            <div ref={aboutImageRef.ref} className={`md:col-span-1 scroll-reveal ${aboutImageRef.isVisible ? 'visible' : ''}`}>
               <div className="relative w-48 h-48 rounded-lg overflow-hidden border-2 border-accent">
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F55ea529b172a40d0a44be3c5bab8f31e"
