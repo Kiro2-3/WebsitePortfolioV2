@@ -9,10 +9,20 @@ export const useScrollReveal = (options?: {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Check if element is already in viewport
+    const checkIfInView = () => {
+      if (!ref.current) return false;
+      const rect = ref.current.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom > 0;
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
+          // Use requestAnimationFrame to ensure the animation triggers
+          requestAnimationFrame(() => {
+            setIsVisible(true);
+          });
 
           // If triggerOnce is true, stop observing after first reveal
           if (options?.triggerOnce) {
@@ -31,10 +41,11 @@ export const useScrollReveal = (options?: {
     if (ref.current) {
       observer.observe(ref.current);
 
-      // Force check if element is already in viewport
-      const rect = ref.current.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setIsVisible(true);
+      // For elements already in view on mount, trigger animation after a frame
+      if (checkIfInView()) {
+        requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
       }
     }
 
