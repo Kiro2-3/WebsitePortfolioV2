@@ -286,23 +286,23 @@ export default function Index() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 mt-20">
             <div className="space-y-2">
-              <p className="text-accent font-medium tracking-wide text-lg">
+              <p ref={heroTitleRef.ref} className={`text-accent font-medium tracking-wide text-lg scroll-reveal ${heroTitleRef.isVisible ? 'visible' : ''}`}>
                 Hi, my name is
               </p>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight">
+              <h1 ref={heroTitleRef.ref} className={`text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight scroll-reveal ${heroTitleRef.isVisible ? 'visible' : ''}`}>
                 <p>Rocky L. Penamante</p>
               </h1>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-muted-foreground leading-tight">
+            <h2 ref={heroSubtitleRef.ref} className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-muted-foreground leading-tight scroll-reveal ${heroSubtitleRef.isVisible ? 'visible' : ''}`}>
               I build exceptional digital experiences.
             </h2>
-            <p className="max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed pt-4">
+            <p ref={heroDescRef.ref} className={`max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed pt-4 scroll-reveal ${heroDescRef.isVisible ? 'visible' : ''}`}>
               I'm a full-stack developer passionate about creating beautiful and
               functional web and desktop applications. Currently focused on
               full-stack development with React, Node.js, and modern web
               technologies.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-8">
+            <div ref={heroButtonsRef.ref} className={`flex flex-col sm:flex-row gap-4 pt-8 scroll-reveal ${heroButtonsRef.isVisible ? 'visible' : ''}`}>
               <button
                 onClick={() => scrollToSection("work")}
                 className="px-8 py-3 border border-accent text-accent hover:bg-accent hover:text-accent-foreground rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
