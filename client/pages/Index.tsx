@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
+import { useScrollReveal } from "../hooks/use-scroll-reveal";
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
