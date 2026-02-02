@@ -10,31 +10,36 @@ export const useScrollReveal = (options?: {
   const hasTriggered = useRef(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          hasTriggered.current = true;
-          
-          // If triggerOnce is true, stop observing after first reveal
-          if (options?.triggerOnce) {
-            observer.unobserve(entry.target);
+    // Small delay to ensure element is mounted before observing
+    const timeoutId = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            hasTriggered.current = true;
+
+            // If triggerOnce is true, stop observing after first reveal
+            if (options?.triggerOnce) {
+              observer.unobserve(entry.target);
+            }
+          } else if (!options?.triggerOnce) {
+            setIsVisible(false);
           }
-        } else if (!options?.triggerOnce) {
-          setIsVisible(false);
+        },
+        {
+          threshold: options?.threshold ?? 0.1,
+          rootMargin: options?.rootMargin ?? '0px',
         }
-      },
-      {
-        threshold: options?.threshold ?? 0.2,
-        rootMargin: options?.rootMargin ?? '0px 0px -100px 0px',
+      );
+
+      if (ref.current) {
+        observer.observe(ref.current);
       }
-    );
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+      return () => observer.disconnect();
+    }, 100);
 
-    return () => observer.disconnect();
+    return () => clearTimeout(timeoutId);
   }, [options?.threshold, options?.rootMargin, options?.triggerOnce]);
 
   return { ref, isVisible };
