@@ -7,39 +7,38 @@ export const useScrollReveal = (options?: {
 }) => {
   const ref = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const hasTriggered = useRef(false);
 
   useEffect(() => {
-    // Small delay to ensure element is mounted before observing
-    const timeoutId = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            hasTriggered.current = true;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
 
-            // If triggerOnce is true, stop observing after first reveal
-            if (options?.triggerOnce) {
-              observer.unobserve(entry.target);
-            }
-          } else if (!options?.triggerOnce) {
-            setIsVisible(false);
+          // If triggerOnce is true, stop observing after first reveal
+          if (options?.triggerOnce) {
+            observer.unobserve(entry.target);
           }
-        },
-        {
-          threshold: options?.threshold ?? 0.1,
-          rootMargin: options?.rootMargin ?? '0px',
+        } else if (!options?.triggerOnce) {
+          setIsVisible(false);
         }
-      );
-
-      if (ref.current) {
-        observer.observe(ref.current);
+      },
+      {
+        threshold: options?.threshold ?? 0.1,
+        rootMargin: options?.rootMargin ?? '0px 0px -50px 0px',
       }
+    );
 
-      return () => observer.disconnect();
-    }, 100);
+    if (ref.current) {
+      observer.observe(ref.current);
 
-    return () => clearTimeout(timeoutId);
+      // Force check if element is already in viewport
+      const rect = ref.current.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        setIsVisible(true);
+      }
+    }
+
+    return () => observer.disconnect();
   }, [options?.threshold, options?.rootMargin, options?.triggerOnce]);
 
   return { ref, isVisible };
