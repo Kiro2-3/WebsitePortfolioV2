@@ -636,7 +636,7 @@ export default function Index() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-sm bg-accent/10 text-accent rounded border border-accent/30 hover:border-accent transition-colors"
+                        className="px-3 py-1 text-sm bg-accent text-accent-foreground rounded border border-accent transition-colors"
                       >
                         {tag}
                       </span>
@@ -757,7 +757,7 @@ export default function Index() {
       {/* Footer */}
       <footer
         ref={footerRef}
-        className="relative w-full border-t border-border py-12 bg-muted/20"
+        className="relative w-full bg-muted border-t border-border py-12"
         style={{
           transform: `scale(${sectionScales.footer})`,
           transformOrigin: "center top",
