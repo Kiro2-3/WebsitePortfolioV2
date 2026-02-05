@@ -224,7 +224,7 @@ export default function Index() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-background/95 border-b border-border shadow-sm"
+            ? "bg-background border-b border-border shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -327,7 +327,7 @@ export default function Index() {
                 href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
+                className="px-8 py-3 bg-accent text-accent-foreground rounded transition-colors font-medium inline-flex items-center gap-2 w-fit"
               >
                 <Mail className="w-4 h-4" />
                 Get in touch
@@ -583,7 +583,7 @@ export default function Index() {
                                     : currentImageIndex - 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              className="px-3 py-1 bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
                             >
                               ← Previous
                             </button>
@@ -595,7 +595,7 @@ export default function Index() {
                                   className={`w-2 h-2 rounded-full transition-all ${
                                     imgIndex === currentImageIndex
                                       ? "bg-accent w-6"
-                                      : "bg-accent/50 hover:bg-accent/70"
+                                      : "bg-accent hover:bg-accent"
                                   }`}
                                 />
                               ))}
@@ -608,14 +608,14 @@ export default function Index() {
                                     : currentImageIndex + 1,
                                 )
                               }
-                              className="px-3 py-1 bg-accent/80 hover:bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
+                              className="px-3 py-1 bg-accent text-accent-foreground rounded text-sm font-medium transition-colors"
                             >
                               Next →
                             </button>
                           </div>
 
                           {/* Image Counter */}
-                          <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm text-foreground px-3 py-1 rounded text-sm font-medium">
+                          <div className="absolute top-4 right-4 bg-background text-foreground px-3 py-1 rounded text-sm font-medium">
                             {currentImageIndex + 1} / {project.images.length}
                           </div>
                         </>
@@ -649,7 +649,7 @@ export default function Index() {
                           href="https://youtu.be/XdK7nYHkymE"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                          className="inline-flex items-center gap-2 text-accent hover:text-accent transition-colors font-medium group"
                         >
                           System Demo
                           <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -658,7 +658,7 @@ export default function Index() {
                           href="https://alphafitnesscenter.vercel.app/services"
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                          className="inline-flex items-center gap-2 text-accent hover:text-accent transition-colors font-medium group"
                         >
                           Website Link
                           <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -669,7 +669,7 @@ export default function Index() {
                       href={project.github || "https://github.com/Kiro2-3?tab=overview&from=2026-01-01&to=2026-01-29"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-accent hover:text-accent/80 transition-colors font-medium group"
+                      className="inline-flex items-center gap-2 text-accent hover:text-accent transition-colors font-medium group"
                     >
                       GitHub
                       <Github className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -722,7 +722,7 @@ export default function Index() {
                 href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=rockypenamantejr23@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent/90 rounded transition-colors font-medium"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-accent text-accent-foreground hover:bg-accent rounded transition-colors font-medium"
               >
                 <Mail className="w-5 h-5" />
                 Send me an email
