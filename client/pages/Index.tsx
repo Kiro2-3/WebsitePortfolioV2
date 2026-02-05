@@ -444,29 +444,6 @@ export default function Index() {
 
             <hr className="border-border" />
 
-            {/* Personal Information */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Personal Information</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3">
-                {[
-                  { label: "Date of Birth", value: "February 23, 2004" },
-                  { label: "Place of Birth", value: "UST Hospital, Manila" },
-                  { label: "Age", value: "21" },
-                  { label: "Gender", value: "Male" },
-                  { label: "Civil Status", value: "Single" },
-                  { label: "Citizenship", value: "Filipino" },
-                  { label: "Religion", value: "Roman Catholic" },
-                ].map((info) => (
-                  <div key={info.label} className="flex justify-between border-b border-border/30 pb-1">
-                    <span className="font-medium text-primary">{info.label}:</span>
-                    <span className="text-muted-foreground">{info.value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <hr className="border-border" />
-
             {/* Educational Background */}
             <div className="space-y-6">
               <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Educational Background</h4>
@@ -551,19 +528,6 @@ export default function Index() {
               <div className="flex items-center gap-2 text-muted-foreground">
                 <span className="text-accent">★</span>
                 Technical Support Training – NQX San Mateo
-              </div>
-            </div>
-
-            <hr className="border-border" />
-
-            {/* Declaration */}
-            <div className="pt-8 border-t border-dashed border-border/50 text-center sm:text-left">
-              <p className="text-sm text-muted-foreground italic mb-8">
-                I certify that the information provided above is true and correct to the best of my knowledge and belief.
-              </p>
-              <div className="space-y-1">
-                <p className="font-bold text-primary text-xl tracking-widest">ROCKY PEÑAMANTE JR.</p>
-                <p className="text-sm text-accent uppercase tracking-widest border-t border-accent/30 pt-1 inline-block">Applicant Signature</p>
               </div>
             </div>
           </div>
