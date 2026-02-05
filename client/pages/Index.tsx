@@ -400,6 +400,176 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Profile/Resume Section */}
+      <section
+        ref={profileRef}
+        id="profile"
+        className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.profile})`,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out",
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 ref={profileTitleRef.ref} className={`text-4xl font-bold mb-12 text-primary scroll-reveal ${profileTitleRef.isVisible ? 'visible' : ''}`}>
+            <span className="text-accent">02.</span> Professional Profile
+          </h2>
+
+          <div ref={profileContentRef.ref} className={`space-y-16 scroll-reveal ${profileContentRef.isVisible ? 'visible' : ''}`}>
+            {/* Header & Contact */}
+            <div className="space-y-4">
+              <h3 className="text-3xl font-bold text-primary">ROCKY PEÑAMANTE JR.</h3>
+              <div className="flex flex-wrap gap-4 text-muted-foreground">
+                <span className="flex items-center gap-1">📍 Rodriguez, Rizal, Philippines</span>
+                <span className="flex items-center gap-1">📞 0938 992 6231</span>
+                <a href="mailto:rockypenamantejr23@gmail.com" className="text-accent hover:underline flex items-center gap-1">
+                  ✉️ rockypenamantejr23@gmail.com
+                </a>
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Professional Summary */}
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Professional Summary</h4>
+              <p className="text-muted-foreground leading-relaxed">
+                Motivated and detail-oriented Information Technology graduate with hands-on experience in technical support,
+                account management, and business-to-business communication. Adept at troubleshooting, customer support,
+                and maintaining professional client relationships. Eager to contribute technical and interpersonal skills
+                in a dynamic work environment.
+              </p>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Personal Information */}
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Personal Information</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3">
+                {[
+                  { label: "Date of Birth", value: "February 23, 2004" },
+                  { label: "Place of Birth", value: "UST Hospital, Manila" },
+                  { label: "Age", value: "21" },
+                  { label: "Gender", value: "Male" },
+                  { label: "Civil Status", value: "Single" },
+                  { label: "Citizenship", value: "Filipino" },
+                  { label: "Religion", value: "Roman Catholic" },
+                ].map((info) => (
+                  <div key={info.label} className="flex justify-between border-b border-border/30 pb-1">
+                    <span className="font-medium text-primary">{info.label}:</span>
+                    <span className="text-muted-foreground">{info.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Educational Background */}
+            <div className="space-y-6">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Educational Background</h4>
+              <div className="space-y-6">
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Bachelor’s Degree (Expected 2026)</h5>
+                  <p className="text-accent font-medium">Colegio de Montalban – Institute of Computing</p>
+                  <p className="text-sm text-muted-foreground italic">Kasiglahan Village, Rodriguez, Rizal</p>
+                </div>
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Senior High School (2022)</h5>
+                  <p className="text-accent font-medium">Valley High Academy</p>
+                  <p className="text-sm text-muted-foreground italic">JP Rizal Street, Montalban, Rizal</p>
+                </div>
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Junior High School (2020)</h5>
+                  <p className="text-accent font-medium">San Jose National High School</p>
+                  <p className="text-sm text-muted-foreground italic">Ipil Street, Montalban, Rizal</p>
+                </div>
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Elementary (2016)</h5>
+                  <p className="text-accent font-medium">San Rafael Elementary School</p>
+                  <p className="text-sm text-muted-foreground italic">JP Rizal Street, Montalban, Rizal</p>
+                </div>
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Work Experience */}
+            <div className="space-y-6">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Work Experience</h4>
+              <div className="space-y-8">
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Technical Support</h5>
+                  <p className="text-accent font-medium">NQX San Mateo</p>
+                  <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
+                    <li>Provided troubleshooting and technical assistance to clients</li>
+                    <li>Resolved hardware and software-related issues efficiently</li>
+                    <li>Maintained clear and professional communication with users</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="font-bold text-primary text-lg">Account Manager</h5>
+                  <p className="text-accent font-medium">Intouch CX</p>
+                  <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
+                    <li>Managed business-to-business client accounts</li>
+                    <li>Handled customer concerns and ensured service satisfaction</li>
+                    <li>Strengthened client relationships through effective communication</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Additional Skills */}
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Key Professional Skills</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {[
+                  "Technical Troubleshooting",
+                  "Technical & Customer Support",
+                  "Business-to-Business Communication",
+                  "Communication & Interpersonal Skills",
+                  "Problem Solving",
+                  "Basic IT Operations",
+                ].map((skill) => (
+                  <div key={skill} className="flex items-center gap-2 text-muted-foreground">
+                    <span className="text-accent">▹</span>
+                    {skill}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Certifications & Training */}
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Certifications & Training</h4>
+              <div className="flex items-center gap-2 text-muted-foreground">
+                <span className="text-accent">★</span>
+                Technical Support Training – NQX San Mateo
+              </div>
+            </div>
+
+            <hr className="border-border" />
+
+            {/* Declaration */}
+            <div className="pt-8 border-t border-dashed border-border/50 text-center sm:text-left">
+              <p className="text-sm text-muted-foreground italic mb-8">
+                I certify that the information provided above is true and correct to the best of my knowledge and belief.
+              </p>
+              <div className="space-y-1">
+                <p className="font-bold text-primary text-xl tracking-widest">ROCKY PEÑAMANTE JR.</p>
+                <p className="text-sm text-accent uppercase tracking-widest border-t border-accent/30 pt-1 inline-block">Applicant Signature</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Work Section */}
       <section
         ref={workRef}
