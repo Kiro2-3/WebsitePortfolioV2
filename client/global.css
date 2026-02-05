@@ -13,64 +13,64 @@
   */
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 15% 12%;
+    --foreground: 0 0% 0%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 15% 12%;
+    --card-foreground: 0 0% 0%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 12%;
+    --popover-foreground: 0 0% 0%;
 
-    --primary: 210 15% 12%;
+    --primary: 0 0% 0%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 170 100% 40%;
+    --secondary: 0 0% 20%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 10% 90%;
-    --muted-foreground: 210 8% 40%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
 
-    --accent: 170 100% 40%;
+    --accent: 0 0% 0%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 0% 20%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 88%;
-    --input: 210 15% 93%;
-    --ring: 170 100% 40%;
+    --border: 0 0% 80%;
+    --input: 0 0% 93%;
+    --ring: 0 0% 0%;
 
     --radius: 0.5rem;
   }
 
   .dark {
     --background: 0 0% 0%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 98%;
+    --primary: 0 0% 100%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 170 100% 40%;
+    --secondary: 0 0% 80%;
     --secondary-foreground: 0 0% 0%;
 
-    --muted: 0 0% 40%;
-    --muted-foreground: 0 0% 80%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 60%;
 
-    --accent: 170 100% 45%;
+    --accent: 0 0% 100%;
     --accent-foreground: 0 0% 0%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 0% 80%;
+    --destructive-foreground: 0 0% 0%;
 
-    --border: 170 100% 40% / 0.3;
-    --input: 0 0% 12%;
-    --ring: 170 100% 45%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 100%;
   }
 }
 
