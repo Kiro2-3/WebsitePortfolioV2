@@ -151,17 +151,6 @@
     @apply scale-105;
   }
 
-  .blur-overlay {
-    @apply fixed pointer-events-none transition-opacity duration-300;
-  }
-
-  .blur-overlay-top {
-    @apply top-0 left-0 right-0 h-32 z-40;
-  }
-
-  .blur-overlay-bottom {
-    @apply bottom-0 left-0 right-0 h-32 z-40;
-  }
 
   /* Scroll reveal animations */
   .scroll-reveal {
