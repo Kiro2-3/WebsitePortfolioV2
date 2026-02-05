@@ -47,8 +47,8 @@ export default function Index() {
       const sections = [
         { ref: heroRef, key: "hero" },
         { ref: aboutRef, key: "about" },
-        { ref: profileRef, key: "profile" },
         { ref: workRef, key: "work" },
+        { ref: profileRef, key: "profile" },
         { ref: contactRef, key: "contact" },
         { ref: footerRef, key: "footer" },
       ];
@@ -240,16 +240,16 @@ export default function Index() {
               About
             </button>
             <button
-              onClick={() => scrollToSection("profile")}
-              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
-            >
-              Profile
-            </button>
-            <button
               onClick={() => scrollToSection("work")}
               className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
             >
               Work
+            </button>
+            <button
+              onClick={() => scrollToSection("profile")}
+              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+            >
+              Profile
             </button>
             <button
               onClick={() => scrollToSection("contact")}
