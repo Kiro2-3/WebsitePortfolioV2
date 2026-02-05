@@ -131,7 +131,7 @@
 
 @layer components {
   .link-underline {
-    @apply relative inline-block text-accent hover:text-accent/80 transition-colors;
+    @apply relative inline-block text-accent hover:text-accent transition-colors;
   }
 
   .link-underline::after {
