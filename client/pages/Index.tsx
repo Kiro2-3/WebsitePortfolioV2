@@ -8,6 +8,7 @@ export default function Index() {
   const [sectionScales, setSectionScales] = useState({
     hero: 1,
     about: 1,
+    profile: 1,
     work: 1,
     contact: 1,
     footer: 1,
@@ -21,6 +22,7 @@ export default function Index() {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
@@ -45,6 +47,7 @@ export default function Index() {
       const sections = [
         { ref: heroRef, key: "hero" },
         { ref: aboutRef, key: "about" },
+        { ref: profileRef, key: "profile" },
         { ref: workRef, key: "work" },
         { ref: contactRef, key: "contact" },
         { ref: footerRef, key: "footer" },
@@ -107,6 +110,9 @@ export default function Index() {
   const aboutTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
   const aboutContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
   const aboutImageRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+
+  const profileTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const profileContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
 
   const workTitleRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
   const workItemsRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
