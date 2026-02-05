@@ -196,7 +196,7 @@ export default function Index() {
     <div className="bg-background text-foreground">
       {/* Blur Overlay - Top */}
       <div
-        className={`fixed top-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+        className={`fixed top-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 ${
           isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
@@ -206,7 +206,7 @@ export default function Index() {
 
       {/* Blur Overlay - Bottom */}
       <div
-        className={`fixed bottom-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+        className={`fixed bottom-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 ${
           isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
