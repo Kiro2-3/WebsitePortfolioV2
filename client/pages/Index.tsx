@@ -398,7 +398,7 @@ export default function Index() {
             </div>
 
             <div ref={aboutImageRef.ref} className={`md:col-span-1 scroll-reveal ${aboutImageRef.isVisible ? 'visible' : ''}`}>
-              <div className="relative w-48 h-48 rounded-lg overflow-hidden border-2 border-accent">
+              <div className={`relative w-48 h-48 rounded-lg overflow-hidden border-2 border-accent media-reveal ${aboutImageRef.isVisible ? 'visible' : ''}`}>
                 <img
                   src="https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F55ea529b172a40d0a44be3c5bab8f31e"
                   alt="Profile"
