@@ -2,10 +2,15 @@ import { useState, useEffect, useRef } from "react";
 import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 
+// Animation options constants to prevent unnecessary re-runs
+const REVEAL_OPTIONS_HERO = { threshold: 0.5, triggerOnce: true };
+const REVEAL_OPTIONS_DEFAULT = { threshold: 0.3, triggerOnce: true };
+const REVEAL_OPTIONS_WORK = { threshold: 0.2, triggerOnce: true };
+
 // Custom component for media reveal animation
 // Defined outside to prevent remounting on every render
 const RevealMedia = ({ children }: { children: React.ReactNode }) => {
-  const { ref, isVisible } = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+  const { ref, isVisible } = useScrollReveal(REVEAL_OPTIONS_WORK);
   return (
     <div ref={ref as any} className={`media-reveal ${isVisible ? 'visible' : ''}`}>
       {children}
@@ -13,10 +18,81 @@ const RevealMedia = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-// Animation options constants to prevent unnecessary re-runs
-const REVEAL_OPTIONS_HERO = { threshold: 0.5, triggerOnce: true };
-const REVEAL_OPTIONS_DEFAULT = { threshold: 0.3, triggerOnce: true };
-const REVEAL_OPTIONS_WORK = { threshold: 0.2, triggerOnce: true };
+const projectImages = [
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fafce2001bebe4747975a835f00717265",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Faa2ec0a6e56746ee97f815dba59d6de4",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99ce4c1a6c924af286c5b19741a8373c",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99b7baa162b64f80be5f9a114dcb4a5e",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fa8d4567e53c7407186dbf626d488f496",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Ff342379451e44f3b963ada5dc1732742",
+  "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F01518243b9d44f6aac38cca90f213f40",
+];
+
+const projects = [
+  {
+    title: "Alpha Fitness System",
+    description:
+      "A comprehensive gym management platform for managing members, schedules, finances, and operations. Built with React, TypeScript, Node.js, and PostgreSQL. Features include membership management, class scheduling, financial analytics, QR code scanner integration, and real-time reporting.",
+    tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    images: projectImages,
+  },
+  {
+    title: "Colegio De Montalban Payroll System",
+    description:
+      "A comprehensive payroll management system designed for educational institutions. Built with React, TypeScript, Node.js, and PostgreSQL. Features include employee payroll processing, salary management, tax calculations, attendance tracking, and financial reporting.",
+    tags: ["VB.Net", "MySQL"],
+    video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Ffd142cec29e14f2081a3ddf8a0d00316?alt=media&token=d072f471-6248-4e3d-ba94-7fe2207a70f6&apiKey=d0b7126990a54b5caf24622e30c00bac",
+    github: "https://github.com/Kiro2-3/CDM-Payroll-System",
+  },
+  {
+    title: "Magenta Gamex",
+    description:
+      "A static website with Html and Css only.",
+    tags: ["HTML", "CSS"],
+    video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F3bf29a3aeeed417d9b1cd6ece846b06b?alt=media&token=2808f43f-6655-4fc8-9615-034fc95c2840&apiKey=d0b7126990a54b5caf24622e30c00bac",
+    github: "https://github.com/Kiro2-3/Magenta-Gamex",
+  },
+  {
+    title: "C++ First Year Final Project",
+    description:
+      "This system is made with C++ only.",
+    tags: ["C++"],
+    video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Fcb6630cd4e2e4d4e9572fde1a3603984?alt=media&token=74192056-4437-4d04-8f94-2c8289effbf6&apiKey=d0b7126990a54b5caf24622e30c00bac",
+    github: "https://github.com/Kiro2-3/Project-C-Solo-d/commit/a074c6170bbcc9f8dacd68bb4b219e6690bfc523",
+  },
+  {
+    title: "Pizza Menu",
+    description:
+      "A pizza menu application built with Microsoft CLR C++ language. Demonstrates object-oriented programming and user interface design using C++.",
+    tags: ["C++"],
+    video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F20bd42884c444cbe89a1cd560bde207d?alt=media&token=016f177b-b74b-411d-bc79-ef634cb6bc61&apiKey=d0b7126990a54b5caf24622e30c00bac",
+    github: "https://github.com/Kiro2-3/PizzaMenu.C",
+  },
+];
+
+const skills = [
+  "JavaScript",
+  "TypeScript",
+  "MySQL",
+  "Node.js",
+  "C++",
+  "Tailwind CSS",
+  "PostgreSQL",
+  "Git",
+];
+
+const skillIcons: { [key: string]: React.ReactNode } = {
+  JavaScript: <Code2 className="w-4 h-4" />,
+  TypeScript: <Code2 className="w-4 h-4" />,
+  React: <Code2 className="w-4 h-4" />,
+  "Node.js": <Database className="w-4 h-4" />,
+  Express: <Database className="w-4 h-4" />,
+  MySQL: <Database className="w-4 h-4" />,
+  PostgreSQL: <Database className="w-4 h-4" />,
+  "C++": <Cpu className="w-4 h-4" />,
+  "Tailwind CSS": <Leaf className="w-4 h-4" />,
+  Git: <Code2 className="w-4 h-4" />,
+};
 
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -137,82 +213,6 @@ export default function Index() {
   const contactContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const projectImages = [
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fafce2001bebe4747975a835f00717265",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Faa2ec0a6e56746ee97f815dba59d6de4",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99ce4c1a6c924af286c5b19741a8373c",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99b7baa162b64f80be5f9a114dcb4a5e",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fa8d4567e53c7407186dbf626d488f496",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Ff342379451e44f3b963ada5dc1732742",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F01518243b9d44f6aac38cca90f213f40",
-  ];
-
-  const projects = [
-    {
-      title: "Alpha Fitness System",
-      description:
-        "A comprehensive gym management platform for managing members, schedules, finances, and operations. Built with React, TypeScript, Node.js, and PostgreSQL. Features include membership management, class scheduling, financial analytics, QR code scanner integration, and real-time reporting.",
-      tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-      images: projectImages,
-    },
-    {
-      title: "Colegio De Montalban Payroll System",
-      description:
-        "A comprehensive payroll management system designed for educational institutions. Built with React, TypeScript, Node.js, and PostgreSQL. Features include employee payroll processing, salary management, tax calculations, attendance tracking, and financial reporting.",
-      tags: ["VB.Net", "MySQL"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Ffd142cec29e14f2081a3ddf8a0d00316?alt=media&token=d072f471-6248-4e3d-ba94-7fe2207a70f6&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/CDM-Payroll-System",
-    },
-    {
-      title: "Magenta Gamex",
-      description:
-        "A static website with Html and Css only.",
-      tags: ["HTML", "CSS"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F3bf29a3aeeed417d9b1cd6ece846b06b?alt=media&token=2808f43f-6655-4fc8-9615-034fc95c2840&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/Magenta-Gamex",
-    },
-    {
-      title: "C++ First Year Final Project",
-      description:
-        "This system is made with C++ only.",
-      tags: ["C++"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Fcb6630cd4e2e4d4e9572fde1a3603984?alt=media&token=74192056-4437-4d04-8f94-2c8289effbf6&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/Project-C-Solo-d/commit/a074c6170bbcc9f8dacd68bb4b219e6690bfc523",
-    },
-    {
-      title: "Pizza Menu",
-      description:
-        "A pizza menu application built with Microsoft CLR C++ language. Demonstrates object-oriented programming and user interface design using C++.",
-      tags: ["C++"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F20bd42884c444cbe89a1cd560bde207d?alt=media&token=016f177b-b74b-411d-bc79-ef634cb6bc61&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/PizzaMenu.C",
-    },
-  ];
-
-  const skills = [
-    "JavaScript",
-    "TypeScript",
-    "MySQL",
-    "Node.js",
-    "C++",
-    "Tailwind CSS",
-    "PostgreSQL",
-    "Git",
-  ];
-
-  const skillIcons: { [key: string]: React.ReactNode } = {
-    JavaScript: <Code2 className="w-4 h-4" />,
-    TypeScript: <Code2 className="w-4 h-4" />,
-    React: <Code2 className="w-4 h-4" />,
-    "Node.js": <Database className="w-4 h-4" />,
-    Express: <Database className="w-4 h-4" />,
-    MySQL: <Database className="w-4 h-4" />,
-    PostgreSQL: <Database className="w-4 h-4" />,
-    "C++": <Cpu className="w-4 h-4" />,
-    "Tailwind CSS": <Leaf className="w-4 h-4" />,
-    Git: <Code2 className="w-4 h-4" />,
-  };
 
   return (
     <div className="bg-background text-foreground">
