@@ -2,6 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { ExternalLink, Github, Mail, Linkedin, Moon, Sun, Code2, Database, Cpu, Leaf } from "lucide-react";
 import { useScrollReveal } from "../hooks/use-scroll-reveal";
 
+// Custom component for media reveal animation
+// Defined outside to prevent remounting on every render
+const RevealMedia = ({ children }: { children: React.ReactNode }) => {
+  const { ref, isVisible } = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+  return (
+    <div ref={ref as any} className={`media-reveal ${isVisible ? 'visible' : ''}`}>
+      {children}
+    </div>
+  );
+};
+
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isWindowFocused, setIsWindowFocused] = useState(true);
@@ -119,16 +130,6 @@ export default function Index() {
 
   const contactTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
   const contactContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-
-  // Custom component for media reveal animation
-  const RevealMedia = ({ children }: { children: React.ReactNode }) => {
-    const { ref, isVisible } = useScrollReveal({ threshold: 0.2, triggerOnce: true });
-    return (
-      <div ref={ref as any} className={`media-reveal ${isVisible ? 'visible' : ''}`}>
-        {children}
-      </div>
-    );
-  };
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
