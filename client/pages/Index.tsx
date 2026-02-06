@@ -120,6 +120,16 @@ export default function Index() {
   const contactTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
   const contactContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
 
+  // Custom component for media reveal animation
+  const RevealMedia = ({ children }: { children: React.ReactNode }) => {
+    const { ref, isVisible } = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+    return (
+      <div ref={ref as any} className={`media-reveal ${isVisible ? 'visible' : ''}`}>
+        {children}
+      </div>
+    );
+  };
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const projectImages = [
@@ -422,7 +432,7 @@ export default function Index() {
               <div key={index} className="space-y-8">
                 {/* Media Section - Image Slideshow or Video */}
                 {(project.video || project.images) && (
-                  <div className="space-y-4">
+                  <RevealMedia>
                     <div className="relative w-full bg-muted rounded-lg overflow-hidden border border-accent/20">
                       {project.video ? (
                         <video
@@ -487,7 +497,7 @@ export default function Index() {
                         </>
                       )}
                     </div>
-                  </div>
+                  </RevealMedia>
                 )}
 
                 {/* Project Details */}
