@@ -13,6 +13,11 @@ const RevealMedia = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+// Animation options constants to prevent unnecessary re-runs
+const REVEAL_OPTIONS_HERO = { threshold: 0.5, triggerOnce: true };
+const REVEAL_OPTIONS_DEFAULT = { threshold: 0.3, triggerOnce: true };
+const REVEAL_OPTIONS_WORK = { threshold: 0.2, triggerOnce: true };
+
 export default function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isWindowFocused, setIsWindowFocused] = useState(true);
@@ -112,24 +117,24 @@ export default function Index() {
   };
 
   // Scroll reveal hooks for different sections
-  const heroGreetingRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
-  const heroNameRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
-  const heroSubtitleRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
-  const heroDescRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
-  const heroButtonsRef = useScrollReveal({ threshold: 0.5, triggerOnce: true });
+  const heroGreetingRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroNameRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroSubtitleRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroDescRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroButtonsRef = useScrollReveal(REVEAL_OPTIONS_HERO);
 
-  const aboutTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const aboutContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const aboutImageRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const aboutTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const aboutContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const aboutImageRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
 
-  const profileTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const profileContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const profileTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const profileContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
 
-  const workTitleRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
-  const workItemsRef = useScrollReveal({ threshold: 0.2, triggerOnce: true });
+  const workTitleRef = useScrollReveal(REVEAL_OPTIONS_WORK);
+  const workItemsRef = useScrollReveal(REVEAL_OPTIONS_WORK);
 
-  const contactTitleRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
-  const contactContentRef = useScrollReveal({ threshold: 0.3, triggerOnce: true });
+  const contactTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const contactContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
