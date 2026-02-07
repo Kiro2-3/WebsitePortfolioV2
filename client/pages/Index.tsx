@@ -378,8 +378,9 @@ export default function Index() {
         className="relative w-full pt-32 pb-20"
         style={{
           transform: `scale(${sectionScales.hero})`,
+          opacity: sectionOpacities.hero,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -430,8 +431,9 @@ export default function Index() {
         className="relative w-full py-20 border-t border-border"
         style={{
           transform: `scale(${sectionScales.about})`,
+          opacity: sectionOpacities.about,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -494,8 +496,9 @@ export default function Index() {
         style={{
           backgroundColor: "var(--background)",
           transform: `scale(${sectionScales.work})`,
+          opacity: sectionOpacities.work,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -641,8 +644,9 @@ export default function Index() {
         className="relative w-full py-20 border-t border-border"
         style={{
           transform: `scale(${sectionScales.profile})`,
+          opacity: sectionOpacities.profile,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -773,8 +777,9 @@ export default function Index() {
         className="relative w-full py-20 border-t border-border"
         style={{
           transform: `scale(${sectionScales.contact})`,
+          opacity: sectionOpacities.contact,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -844,8 +849,9 @@ export default function Index() {
         className="relative w-full bg-muted border-t border-border py-12"
         style={{
           transform: `scale(${sectionScales.footer})`,
+          opacity: sectionOpacities.footer,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
