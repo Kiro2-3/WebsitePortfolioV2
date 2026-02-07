@@ -339,6 +339,12 @@ export default function Index() {
               Work
             </button>
             <button
+              onClick={() => scrollToSection("experience")}
+              className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
+            >
+              Experience
+            </button>
+            <button
               onClick={() => scrollToSection("profile")}
               className="text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
             >
