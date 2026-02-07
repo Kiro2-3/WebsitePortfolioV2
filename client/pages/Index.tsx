@@ -114,6 +114,27 @@ const education = [
   },
 ];
 
+const workExperience = [
+  {
+    role: "Technical Support",
+    company: "NQX San Mateo",
+    tasks: [
+      "Provided troubleshooting and technical assistance to clients",
+      "Resolved hardware and software-related issues efficiently",
+      "Maintained clear and professional communication with users",
+    ],
+  },
+  {
+    role: "Account Manager",
+    company: "Intouch CX",
+    tasks: [
+      "Managed business-to-business client accounts",
+      "Handled customer concerns and ensured service satisfaction",
+      "Strengthened client relationships through effective communication",
+    ],
+  },
+];
+
 const skillIcons: { [key: string]: React.ReactNode } = {
   JavaScript: <Code2 className="w-4 h-4" />,
   TypeScript: <Code2 className="w-4 h-4" />,
@@ -667,27 +688,29 @@ export default function Index() {
             <hr className="border-border" />
 
             {/* Work Experience */}
-            <div className="space-y-6">
+            <div className="space-y-10">
               <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Work Experience</h4>
-              <div className="space-y-8">
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Technical Support</h5>
-                  <p className="text-accent font-medium">NQX San Mateo</p>
-                  <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                    <li>Provided troubleshooting and technical assistance to clients</li>
-                    <li>Resolved hardware and software-related issues efficiently</li>
-                    <li>Maintained clear and professional communication with users</li>
-                  </ul>
-                </div>
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Account Manager</h5>
-                  <p className="text-accent font-medium">Intouch CX</p>
-                  <ul className="mt-2 space-y-2 list-disc list-inside text-muted-foreground">
-                    <li>Managed business-to-business client accounts</li>
-                    <li>Handled customer concerns and ensured service satisfaction</li>
-                    <li>Strengthened client relationships through effective communication</li>
-                  </ul>
-                </div>
+              <div className="relative border-l-2 border-accent/20 ml-3 pl-8 space-y-12">
+                {workExperience.map((item, index) => (
+                  <RevealItem key={index}>
+                    <div className="relative">
+                      {/* Milestone Dot */}
+                      <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-accent bg-background z-10" />
+
+                      <div className="space-y-3">
+                        <div>
+                          <h5 className="font-bold text-primary text-xl">{item.role}</h5>
+                          <p className="text-accent font-semibold text-lg">{item.company}</p>
+                        </div>
+                        <ul className="space-y-2 list-disc list-inside text-muted-foreground leading-relaxed">
+                          {item.tasks.map((task, i) => (
+                            <li key={i}>{task}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </RevealItem>
+                ))}
               </div>
             </div>
 
