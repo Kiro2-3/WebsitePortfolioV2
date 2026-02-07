@@ -81,6 +81,29 @@ const skills = [
   "Git",
 ];
 
+const education = [
+  {
+    degree: "Bachelor’s Degree (Expected 2026)",
+    school: "Colegio de Montalban – Institute of Computing",
+    location: "Kasiglahan Village, Rodriguez, Rizal",
+  },
+  {
+    degree: "Senior High School (2022)",
+    school: "Valley High Academy",
+    location: "JP Rizal Street, Montalban, Rizal",
+  },
+  {
+    degree: "Junior High School (2020)",
+    school: "San Jose National High School",
+    location: "Ipil Street, Montalban, Rizal",
+  },
+  {
+    degree: "Elementary (2016)",
+    school: "San Rafael Elementary School",
+    location: "JP Rizal Street, Montalban, Rizal",
+  },
+];
+
 const skillIcons: { [key: string]: React.ReactNode } = {
   JavaScript: <Code2 className="w-4 h-4" />,
   TypeScript: <Code2 className="w-4 h-4" />,
@@ -609,29 +632,23 @@ export default function Index() {
             <hr className="border-border" />
 
             {/* Educational Background */}
-            <div className="space-y-6">
+            <div className="space-y-10">
               <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Educational Background</h4>
-              <div className="space-y-6">
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Bachelor’s Degree (Expected 2026)</h5>
-                  <p className="text-accent font-medium">Colegio de Montalban – Institute of Computing</p>
-                  <p className="text-sm text-muted-foreground italic">Kasiglahan Village, Rodriguez, Rizal</p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Senior High School (2022)</h5>
-                  <p className="text-accent font-medium">Valley High Academy</p>
-                  <p className="text-sm text-muted-foreground italic">JP Rizal Street, Montalban, Rizal</p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Junior High School (2020)</h5>
-                  <p className="text-accent font-medium">San Jose National High School</p>
-                  <p className="text-sm text-muted-foreground italic">Ipil Street, Montalban, Rizal</p>
-                </div>
-                <div>
-                  <h5 className="font-bold text-primary text-lg">Elementary (2016)</h5>
-                  <p className="text-accent font-medium">San Rafael Elementary School</p>
-                  <p className="text-sm text-muted-foreground italic">JP Rizal Street, Montalban, Rizal</p>
-                </div>
+              <div className="relative border-l-2 border-accent/20 ml-3 pl-8 space-y-12">
+                {education.map((item, index) => (
+                  <div key={index} className="relative">
+                    {/* Milestone Dot */}
+                    <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-accent bg-background z-10" />
+
+                    <div className="space-y-1">
+                      <h5 className="font-bold text-primary text-xl">{item.degree}</h5>
+                      <p className="text-accent font-semibold text-lg">{item.school}</p>
+                      <p className="text-sm text-muted-foreground italic flex items-center gap-1">
+                        📍 {item.location}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
