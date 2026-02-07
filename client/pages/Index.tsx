@@ -650,7 +650,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Profile/Resume Section */}
+      {/* Profile/Resume Section (Education) */}
       <section
         ref={profileRef}
         id="profile"
@@ -664,7 +664,7 @@ export default function Index() {
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 ref={profileTitleRef.ref} className={`text-4xl font-bold mb-12 text-primary scroll-reveal ${profileTitleRef.isVisible ? 'visible' : ''}`}>
-            <span className="text-accent">03.</span> Professional Profile
+            <span className="text-accent">04.</span> Professional Profile
           </h2>
 
           <div ref={profileContentRef.ref} className={`space-y-16 scroll-reveal ${profileContentRef.isVisible ? 'visible' : ''}`}>
@@ -690,12 +690,30 @@ export default function Index() {
                 ))}
               </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <hr className="border-border" />
+      {/* Work Experience Section */}
+      <section
+        ref={experienceRef}
+        id="experience"
+        className="relative w-full py-20 border-t border-border"
+        style={{
+          transform: `scale(${sectionScales.experience})`,
+          opacity: sectionOpacities.experience,
+          transformOrigin: "center top",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
+        }}
+      >
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 ref={experienceTitleRef.ref} className={`text-4xl font-bold mb-12 text-primary scroll-reveal ${experienceTitleRef.isVisible ? 'visible' : ''}`}>
+            <span className="text-accent">03.</span> Work Experience
+          </h2>
 
-            {/* Work Experience */}
+          <div ref={experienceContentRef.ref} className={`space-y-16 scroll-reveal ${experienceContentRef.isVisible ? 'visible' : ''}`}>
+            {/* Work Experience Milestones */}
             <div className="space-y-10">
-              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Work Experience</h4>
               <div className="relative border-l-2 border-accent/20 ml-3 pl-8 space-y-12">
                 {workExperience.map((item, index) => (
                   <RevealItem key={index}>
@@ -737,7 +755,7 @@ export default function Index() {
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 ref={contactTitleRef.ref} className={`text-4xl font-bold mb-8 text-primary scroll-reveal ${contactTitleRef.isVisible ? 'visible' : ''}`}>
-            <span className="text-accent">04.</span> Get In Touch
+            <span className="text-accent">05.</span> Get In Touch
           </h2>
 
           <div ref={contactContentRef.ref} className={`scroll-reveal ${contactContentRef.isVisible ? 'visible' : ''}`}>
