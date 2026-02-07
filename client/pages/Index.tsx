@@ -655,33 +655,6 @@ export default function Index() {
           </h2>
 
           <div ref={profileContentRef.ref} className={`space-y-16 scroll-reveal ${profileContentRef.isVisible ? 'visible' : ''}`}>
-            {/* Header & Contact */}
-            <div className="space-y-4">
-              <h3 className="text-3xl font-bold text-primary">ROCKY PEÑAMANTE JR.</h3>
-              <div className="flex flex-wrap gap-4 text-muted-foreground">
-                <span className="flex items-center gap-1">📍 Rodriguez, Rizal, Philippines</span>
-                <span className="flex items-center gap-1">📞 0938 992 6231</span>
-                <a href="mailto:rockypenamantejr23@gmail.com" className="text-accent hover:underline flex items-center gap-1">
-                  ✉️ rockypenamantejr23@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <hr className="border-border" />
-
-            {/* Professional Summary */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Professional Summary</h4>
-              <p className="text-muted-foreground leading-relaxed">
-                Motivated and detail-oriented Information Technology graduate with hands-on experience in technical support,
-                account management, and business-to-business communication. Adept at troubleshooting, customer support,
-                and maintaining professional client relationships. Eager to contribute technical and interpersonal skills
-                in a dynamic work environment.
-              </p>
-            </div>
-
-            <hr className="border-border" />
-
             {/* Educational Background */}
             <div className="space-y-10">
               <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Educational Background</h4>
@@ -731,39 +704,6 @@ export default function Index() {
                     </div>
                   </RevealItem>
                 ))}
-              </div>
-            </div>
-
-            <hr className="border-border" />
-
-            {/* Additional Skills */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Key Professional Skills</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  "Technical Troubleshooting",
-                  "Technical & Customer Support",
-                  "Business-to-Business Communication",
-                  "Communication & Interpersonal Skills",
-                  "Problem Solving",
-                  "Basic IT Operations",
-                ].map((skill) => (
-                  <div key={skill} className="flex items-center gap-2 text-muted-foreground">
-                    <span className="text-accent">▹</span>
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <hr className="border-border" />
-
-            {/* Certifications & Training */}
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Certifications & Training</h4>
-              <div className="flex items-center gap-2 text-muted-foreground">
-                <span className="text-accent">★</span>
-                Technical Support Training – NQX San Mateo
               </div>
             </div>
           </div>
