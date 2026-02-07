@@ -154,16 +154,18 @@ export default function Index() {
   const [sectionScales, setSectionScales] = useState({
     hero: 1,
     about: 1,
-    profile: 1,
     work: 1,
+    experience: 1,
+    profile: 1,
     contact: 1,
     footer: 1,
   });
   const [sectionOpacities, setSectionOpacities] = useState({
     hero: 1,
     about: 1,
-    profile: 1,
     work: 1,
+    experience: 1,
+    profile: 1,
     contact: 1,
     footer: 1,
   });
@@ -176,8 +178,9 @@ export default function Index() {
 
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
-  const profileRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -202,6 +205,7 @@ export default function Index() {
         { ref: heroRef, key: "hero" },
         { ref: aboutRef, key: "about" },
         { ref: workRef, key: "work" },
+        { ref: experienceRef, key: "experience" },
         { ref: profileRef, key: "profile" },
         { ref: contactRef, key: "contact" },
         { ref: footerRef, key: "footer" },
@@ -275,6 +279,9 @@ export default function Index() {
 
   const profileTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
   const profileContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+
+  const experienceTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const experienceContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
 
   const workTitleRef = useScrollReveal(REVEAL_OPTIONS_WORK);
   const workItemsRef = useScrollReveal(REVEAL_OPTIONS_WORK);
