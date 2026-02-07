@@ -159,6 +159,14 @@ export default function Index() {
     contact: 1,
     footer: 1,
   });
+  const [sectionOpacities, setSectionOpacities] = useState({
+    hero: 1,
+    about: 1,
+    profile: 1,
+    work: 1,
+    contact: 1,
+    footer: 1,
+  });
   const [isDark, setIsDark] = useState(() => {
     // Check localStorage first, then check system preference
     const saved = localStorage.getItem("theme");
@@ -200,12 +208,14 @@ export default function Index() {
       ];
 
       const newScales: Record<string, number> = {};
+      const newOpacities: Record<string, number> = {};
 
       sections.forEach(({ ref, key }) => {
         if (ref.current) {
-          // Work section always stays at full scale
+          // Work section always stays at full scale and opacity
           if (key === "work") {
             newScales[key] = 1;
+            newOpacities[key] = 1;
           } else {
             const rect = ref.current.getBoundingClientRect();
             const sectionCenter = rect.top + rect.height / 2;
@@ -216,11 +226,17 @@ export default function Index() {
             const maxDistance = window.innerHeight;
             const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
             newScales[key] = scale;
+
+            // Opacity: closer to center = 1, further away = 0.2
+            // Multiplying by 1.2 to make the fade effect more pronounced as it leaves the center
+            const opacity = Math.max(0.2, 1 - (distanceFromViewportCenter / maxDistance) * 1.2);
+            newOpacities[key] = opacity;
           }
         }
       });
 
       setSectionScales(newScales);
+      setSectionOpacities(newOpacities);
     };
 
     window.addEventListener("scroll", handleScroll);
