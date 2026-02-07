@@ -18,6 +18,16 @@ const RevealMedia = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
+// Custom component for item reveal animation
+const RevealItem = ({ children }: { children: React.ReactNode }) => {
+  const { ref, isVisible } = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  return (
+    <div ref={ref as any} className={`scroll-reveal ${isVisible ? 'visible' : ''}`}>
+      {children}
+    </div>
+  );
+};
+
 const projectImages = [
   "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fafce2001bebe4747975a835f00717265",
   "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Faa2ec0a6e56746ee97f815dba59d6de4",
@@ -636,18 +646,20 @@ export default function Index() {
               <h4 className="text-xl font-bold text-accent uppercase tracking-wider">Educational Background</h4>
               <div className="relative border-l-2 border-accent/20 ml-3 pl-8 space-y-12">
                 {education.map((item, index) => (
-                  <div key={index} className="relative">
-                    {/* Milestone Dot */}
-                    <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-accent bg-background z-10" />
+                  <RevealItem key={index}>
+                    <div className="relative">
+                      {/* Milestone Dot */}
+                      <div className="absolute -left-[41px] top-1.5 w-5 h-5 rounded-full border-4 border-accent bg-background z-10" />
 
-                    <div className="space-y-1">
-                      <h5 className="font-bold text-primary text-xl">{item.degree}</h5>
-                      <p className="text-accent font-semibold text-lg">{item.school}</p>
-                      <p className="text-sm text-muted-foreground italic flex items-center gap-1">
-                        📍 {item.location}
-                      </p>
+                      <div className="space-y-1">
+                        <h5 className="font-bold text-primary text-xl">{item.degree}</h5>
+                        <p className="text-accent font-semibold text-lg">{item.school}</p>
+                        <p className="text-sm text-muted-foreground italic flex items-center gap-1">
+                          📍 {item.location}
+                        </p>
+                      </div>
                     </div>
-                  </div>
+                  </RevealItem>
                 ))}
               </div>
             </div>
