@@ -13,6 +13,17 @@ export default function Index() {
     hero: 1,
     about: 1,
     work: 1,
+    experience: 1,
+    profile: 1,
+    contact: 1,
+    footer: 1,
+  });
+  const [sectionOpacities, setSectionOpacities] = useState({
+    hero: 1,
+    about: 1,
+    work: 1,
+    experience: 1,
+    profile: 1,
     contact: 1,
     footer: 1,
   });
@@ -26,6 +37,8 @@ export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const workRef = useRef<HTMLDivElement>(null);
+  const experienceRef = useRef<HTMLDivElement>(null);
+  const profileRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
 
@@ -50,17 +63,21 @@ export default function Index() {
         { ref: heroRef, key: "hero" },
         { ref: aboutRef, key: "about" },
         { ref: workRef, key: "work" },
+        { ref: experienceRef, key: "experience" },
+        { ref: profileRef, key: "profile" },
         { ref: contactRef, key: "contact" },
         { ref: footerRef, key: "footer" },
       ];
 
       const newScales: Record<string, number> = {};
+      const newOpacities: Record<string, number> = {};
 
       sections.forEach(({ ref, key }) => {
         if (ref.current) {
-          // Work section always stays at full scale
+          // Work section always stays at full scale and opacity
           if (key === "work") {
             newScales[key] = 1;
+            newOpacities[key] = 1;
           } else {
             const rect = ref.current.getBoundingClientRect();
             const sectionCenter = rect.top + rect.height / 2;
@@ -71,11 +88,17 @@ export default function Index() {
             const maxDistance = window.innerHeight;
             const scale = Math.max(0.85, 1 - (distanceFromViewportCenter / maxDistance) * 0.15);
             newScales[key] = scale;
+
+            // Opacity: closer to center = 1, further away = 0.2
+            // Multiplying by 1.2 to make the fade effect more pronounced as it leaves the center
+            const opacity = Math.max(0.2, 1 - (distanceFromViewportCenter / maxDistance) * 1.2);
+            newOpacities[key] = opacity;
           }
         }
       });
 
       setSectionScales(newScales);
+      setSectionOpacities(newOpacities);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -101,89 +124,36 @@ export default function Index() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Scroll reveal hooks for different sections
+  const heroGreetingRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroNameRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroSubtitleRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroDescRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+  const heroButtonsRef = useScrollReveal(REVEAL_OPTIONS_HERO);
+
+  const aboutTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const aboutContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const aboutImageRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+
+  const profileTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const profileContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+
+  const experienceTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const experienceContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+
+  const workTitleRef = useScrollReveal(REVEAL_OPTIONS_WORK);
+  const workItemsRef = useScrollReveal(REVEAL_OPTIONS_WORK);
+
+  const contactTitleRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+  const contactContentRef = useScrollReveal(REVEAL_OPTIONS_DEFAULT);
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const projectImages = [
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fafce2001bebe4747975a835f00717265",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Faa2ec0a6e56746ee97f815dba59d6de4",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99ce4c1a6c924af286c5b19741a8373c",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F99b7baa162b64f80be5f9a114dcb4a5e",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Fa8d4567e53c7407186dbf626d488f496",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2Ff342379451e44f3b963ada5dc1732742",
-    "https://cdn.builder.io/api/v1/image/assets%2F458bc5ee9abe4ac0a100b512a7fa3aaa%2F01518243b9d44f6aac38cca90f213f40",
-  ];
-
-  const projects = [
-    {
-      title: "Alpha Fitness System",
-      description:
-        "A comprehensive gym management platform for managing members, schedules, finances, and operations. Built with React, TypeScript, Node.js, and PostgreSQL. Features include membership management, class scheduling, financial analytics, QR code scanner integration, and real-time reporting.",
-      tags: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
-      images: projectImages,
-    },
-    {
-      title: "Colegio De Montalban Payroll System",
-      description:
-        "A comprehensive payroll management system designed for educational institutions. Built with React, TypeScript, Node.js, and PostgreSQL. Features include employee payroll processing, salary management, tax calculations, attendance tracking, and financial reporting.",
-      tags: ["VB.Net", "MySQL"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Ffd142cec29e14f2081a3ddf8a0d00316?alt=media&token=d072f471-6248-4e3d-ba94-7fe2207a70f6&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/CDM-Payroll-System",
-    },
-    {
-      title: "Magenta Gamex",
-      description:
-        "A static website with Html and Css only.",
-      tags: ["HTML", "CSS"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F3bf29a3aeeed417d9b1cd6ece846b06b?alt=media&token=2808f43f-6655-4fc8-9615-034fc95c2840&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/Magenta-Gamex",
-    },
-    {
-      title: "C++ First Year Final Project",
-      description:
-        "This system is made with C++ only.",
-      tags: ["C++"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2Fcb6630cd4e2e4d4e9572fde1a3603984?alt=media&token=74192056-4437-4d04-8f94-2c8289effbf6&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/Project-C-Solo-d/commit/a074c6170bbcc9f8dacd68bb4b219e6690bfc523",
-    },
-    {
-      title: "Pizza Menu",
-      description:
-        "A pizza menu application built with Microsoft CLR C++ language. Demonstrates object-oriented programming and user interface design using C++.",
-      tags: ["C++"],
-      video: "https://cdn.builder.io/o/assets%2Fd0b7126990a54b5caf24622e30c00bac%2F20bd42884c444cbe89a1cd560bde207d?alt=media&token=016f177b-b74b-411d-bc79-ef634cb6bc61&apiKey=d0b7126990a54b5caf24622e30c00bac",
-      github: "https://github.com/Kiro2-3/PizzaMenu.C",
-    },
-  ];
-
-  const skills = [
-    "JavaScript",
-    "TypeScript",
-    "MySQL",
-    "Node.js",
-    "C++",
-    "Tailwind CSS",
-    "PostgreSQL",
-    "Git",
-  ];
-
-  const skillIcons: { [key: string]: React.ReactNode } = {
-    JavaScript: <Code2 className="w-4 h-4" />,
-    TypeScript: <Code2 className="w-4 h-4" />,
-    React: <Code2 className="w-4 h-4" />,
-    "Node.js": <Database className="w-4 h-4" />,
-    Express: <Database className="w-4 h-4" />,
-    MySQL: <Database className="w-4 h-4" />,
-    PostgreSQL: <Database className="w-4 h-4" />,
-    "C++": <Cpu className="w-4 h-4" />,
-    "Tailwind CSS": <Leaf className="w-4 h-4" />,
-    Git: <Code2 className="w-4 h-4" />,
-  };
 
   return (
     <div className="bg-background text-foreground">
       {/* Blur Overlay - Top */}
       <div
-        className={`fixed top-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+        className={`fixed top-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 ${
           isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
@@ -193,7 +163,7 @@ export default function Index() {
 
       {/* Blur Overlay - Bottom */}
       <div
-        className={`fixed bottom-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 backdrop-blur-xl ${
+        className={`fixed bottom-0 left-0 right-0 h-96 pointer-events-none transition-all duration-1000 z-40 ${
           isScrolled ? "opacity-20" : "opacity-0"
         }`}
         style={{
@@ -205,7 +175,7 @@ export default function Index() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? "bg-background/95 backdrop-blur-sm border-b border-border shadow-sm"
+            ? "bg-background border-b border-border shadow-sm"
             : "bg-transparent"
         }`}
       >
@@ -273,24 +243,25 @@ export default function Index() {
         className="relative w-full pt-32 pb-20"
         style={{
           transform: `scale(${sectionScales.hero})`,
+          opacity: sectionOpacities.hero,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 mt-20">
             <div className="space-y-2">
-              <p className="text-accent font-medium tracking-wide text-lg">
+              <p ref={heroGreetingRef.ref} className={`text-accent font-medium tracking-wide text-lg scroll-reveal ${heroGreetingRef.isVisible ? 'visible' : ''}`}>
                 Hi, my name is
               </p>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight">
+              <h1 ref={heroNameRef.ref} className={`text-5xl sm:text-6xl lg:text-7xl font-bold text-primary leading-tight scroll-reveal ${heroNameRef.isVisible ? 'visible' : ''}`}>
                 <p>Rocky L. Penamante</p>
               </h1>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-muted-foreground leading-tight">
+            <h2 ref={heroSubtitleRef.ref} className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-muted-foreground leading-tight scroll-reveal ${heroSubtitleRef.isVisible ? 'visible' : ''}`}>
               I build exceptional digital experiences.
             </h2>
-            <p className="max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed pt-4">
+            <p ref={heroDescRef.ref} className={`max-w-2xl text-base sm:text-lg text-muted-foreground leading-relaxed pt-4 scroll-reveal ${heroDescRef.isVisible ? 'visible' : ''}`}>
               I'm a full-stack developer passionate about creating beautiful and
               functional web and desktop applications. Currently focused on
               full-stack development with React, Node.js, and modern web
@@ -332,16 +303,17 @@ export default function Index() {
         className="relative w-full py-20 border-t border-border"
         style={{
           transform: `scale(${sectionScales.about})`,
+          opacity: sectionOpacities.about,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-12 text-primary">
+          <h2 ref={aboutTitleRef.ref} className={`text-4xl font-bold mb-12 text-primary scroll-reveal ${aboutTitleRef.isVisible ? 'visible' : ''}`}>
             <span className="text-accent">01.</span> About
           </h2>
           <div className="grid md:grid-cols-3 gap-12">
-            <div className="md:col-span-2 space-y-4">
+            <div ref={aboutContentRef.ref} className={`md:col-span-2 space-y-4 scroll-reveal ${aboutContentRef.isVisible ? 'visible' : ''}`}>
               <p className="text-muted-foreground leading-relaxed">
                 Hello! I'm a full-stack developer with a passion for creating
                 beautiful and functional web applications. My interest in web
@@ -394,14 +366,15 @@ export default function Index() {
         id="work"
         className="relative w-full py-20 border-t border-border"
         style={{
-          backgroundColor: isDark ? "hsl(210, 15%, 12%)" : "hsl(200, 20%, 98%)",
+          backgroundColor: "var(--background)",
           transform: `scale(${sectionScales.work})`,
+          opacity: sectionOpacities.work,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold mb-16 text-primary">
+          <h2 ref={workTitleRef.ref} className={`text-4xl font-bold mb-16 text-primary scroll-reveal ${workTitleRef.isVisible ? 'visible' : ''}`}>
             <span className="text-accent">02.</span> Work & Experience's
           </h2>
 
@@ -451,7 +424,7 @@ export default function Index() {
                                   className={`w-2 h-2 rounded-full transition-all ${
                                     imgIndex === currentImageIndex
                                       ? "bg-accent w-6"
-                                      : "bg-accent/50 hover:bg-accent/70"
+                                      : "bg-accent hover:bg-accent"
                                   }`}
                                 />
                               ))}
@@ -473,7 +446,7 @@ export default function Index() {
                           </div>
 
                           {/* Image Counter */}
-                          <div className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm text-foreground px-3 py-1 rounded text-sm font-medium">
+                          <div className="absolute top-4 right-4 bg-background text-foreground px-3 py-1 rounded text-sm font-medium">
                             {currentImageIndex + 1} / {project.images.length}
                           </div>
                         </>
@@ -568,32 +541,34 @@ export default function Index() {
         className="relative w-full py-20 border-t border-border"
         style={{
           transform: `scale(${sectionScales.contact})`,
+          opacity: sectionOpacities.contact,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-8 text-primary">
-            <span className="text-accent">03.</span> Get In Touch
+          <h2 ref={contactTitleRef.ref} className={`text-4xl font-bold mb-8 text-primary scroll-reveal ${contactTitleRef.isVisible ? 'visible' : ''}`}>
+            <span className="text-accent">05.</span> Get In Touch
           </h2>
 
-          <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed mb-12">
-            I'm always interested in hearing about new projects and
-            opportunities. Whether you have a question or just want to say hi,
-            feel free to reach out!
-          </p>
+          <div ref={contactContentRef.ref} className={`scroll-reveal ${contactContentRef.isVisible ? 'visible' : ''}`}>
+            <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed mb-12">
+              I'm always interested in hearing about new projects and
+              opportunities. Whether you have a question or just want to say hi,
+              feel free to reach out!
+            </p>
 
-          <div className="max-w-2xl mx-auto mb-12 space-y-4">
-            <div className="text-base text-muted-foreground">
-              <p className="font-medium text-foreground mb-2">Contact Information:</p>
-              <p>
-                <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
-              </p>
-              <p>
-                <span className="text-accent">Contact Number:</span> +63 938 992 6231
-              </p>
+            <div className="max-w-2xl mx-auto mb-12 space-y-4">
+              <div className="text-base text-muted-foreground">
+                <p className="font-medium text-foreground mb-2">Contact Information:</p>
+                <p>
+                  <span className="text-accent">Email:</span> rockypenamantejr23@gmail.com
+                </p>
+                <p>
+                  <span className="text-accent">Contact Number:</span> +63 938 992 6231
+                </p>
+              </div>
             </div>
-          </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
@@ -650,11 +625,12 @@ export default function Index() {
       {/* Footer */}
       <footer
         ref={footerRef}
-        className="relative w-full border-t border-border py-12 bg-muted/20"
+        className="relative w-full bg-muted border-t border-border py-12"
         style={{
           transform: `scale(${sectionScales.footer})`,
+          opacity: sectionOpacities.footer,
           transformOrigin: "center top",
-          transition: "transform 0.1s ease-out",
+          transition: "transform 0.1s ease-out, opacity 0.3s ease-out",
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
