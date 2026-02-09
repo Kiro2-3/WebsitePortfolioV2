@@ -622,7 +622,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
+
       <footer
         ref={footerRef}
         className="relative w-full bg-muted border-t border-border py-12"
